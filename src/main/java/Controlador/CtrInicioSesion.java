@@ -3,71 +3,47 @@ package Controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-
 import Modelo.Excepcion;
 import Modelo.Usuario;
-import Vista.General;
 import Vista.IniciarSesion;
 import Vista.Vista;
 
 public class CtrInicioSesion implements ActionListener {
+	private Usuario usuario;
+	private Vista vista;
 
-	Vista v;
-	Usuario usuario;
-	General g;
-	JTextField t1,t2;
-		
-	public CtrInicioSesion(Usuario u,Vista vista,CtrRegistrarse contR) {
-		
-		usuario=u;
-		v=vista;
-		g=v.getPanelPrincipal().getGeneral();
-
-		v.setActionListeners(this,contR);
+	public CtrInicioSesion(Usuario u, Vista v) {
+		usuario = u;
+		vista = v;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		String comando=e.getActionCommand();
-		System.out.println("Evento"+comando);
-		if(comando.equals("Iniciar Sesion")) {
+		String comando = e.getActionCommand();
+
+		if (comando.equals("Iniciar Sesion")) {
 			try {
-			IniciarSesion is=v.getIniciarSesion();
-			t1=is.getTextoUsuario();
-			t2=is.getTextoContrasena();
-			String correo=t1.getText();
-			System.out.println(correo);
-			String contraseña=t2.getText();
-			Usuario u=Usuario.inicioSesion(correo, contraseña);
-			
-			
-				if(u!=null) {
-					System.out.println(u.getAlias());
-					v.getIniciarSesion().setVisible(false);
-					v.getPanelPrincipal().setVisible(true);
+				IniciarSesion is = vista.getIniciarSesion();
+				String correo = is.getTextoUsuario().getText();
+				String contrasena = is.getTextoContrasena().getText();
+				Usuario u = Usuario.inicioSesion(correo, contrasena);
+				if (u != null) {
+					vista.getIniciarSesion().setVisible(false);
+					vista.getPanelPrincipal().setVisible(true);
+					usuario.setCorreo(u.getCorreo());
+					usuario.setAlias(u.getAlias());
+					usuario.setApellido(u.getApellido());
+					usuario.setNombre(u.getNombre());
+					usuario.setContrasena(u.getContrasena());
+					usuario.setFecha_Nacimiento(u.getFecha_Nacimiento());
+					usuario.setDescripcion(u.getDescripcion());
 				}
-				
 			} catch (Excepcion e1) {
-				v.getIniciarSesion().setMensajeError(e1.getMessage());
+				vista.getIniciarSesion().setMensajeError(e1.getMessage());
 			}
-		
-		
-		}else if(comando.equals("Registrarse")) {
-			v.getIniciarSesion().setVisible(false);
-			v.getEditarPerfil().setVisible(true);
+		} else if (comando.equals("Registrarse")) {
+			vista.getIniciarSesion().setVisible(false);
+			vista.getEditarPerfil().setVisible(true);
 			
 		}
-		
-	
 	}
-	}
-	
-	
-	
-	
-	
-	
-	
-
+}

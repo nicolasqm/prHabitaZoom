@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class IniciarSesion extends JPanel {
 
 	private JPanel panelLogo;

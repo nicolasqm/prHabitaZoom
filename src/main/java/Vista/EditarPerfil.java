@@ -12,9 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import Modelo.Usuario;
+
 @SuppressWarnings("serial")
 public class EditarPerfil extends JPanel {
-
+	
 	private JLabel tModificarPerfil;
 
 	private JLabel tNombre = new JLabel("Nombre: ");
@@ -37,11 +39,12 @@ public class EditarPerfil extends JPanel {
 	private JTextField fechaNacimiento;
 
 	private JButton confirmarPerfil = new JButton("Confirmar Perfil");
+	private JButton cancelar = new JButton("Cancelar");
 
 	// obligatorios: true = se debe rellenar los campos obligatorios, false = todos
 	// los campos son opcionales
 	private boolean obligatorios;
-
+	
 	public EditarPerfil(boolean camposObligatorios) {
 		obligatorios = camposObligatorios;
 		tModificarPerfil = new JLabel(
@@ -55,7 +58,7 @@ public class EditarPerfil extends JPanel {
 		contrasena = new JPasswordField();
 		confirmarContrasena = new JPasswordField();
 		
-		setLayout(new GridLayout(10, 1, 0, 0));
+		setLayout(new GridLayout(11, 1, 0, 0));
 		tModificarPerfil.setFont(new Font(Font.DIALOG,Font.BOLD,20));
 		add(tModificarPerfil);
 
@@ -137,10 +140,35 @@ public class EditarPerfil extends JPanel {
 		p9.add(confirmarPerfil);
 		p9.add(tError);
 		add(p9);
+		
+		
+		JPanel p10=new JPanel();
+		p10.setLayout(new FlowLayout());
+		cancelar.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		p10.add(cancelar);
+		add(p10);
+		
 	}
 
 	public EditarPerfil() {
 		this(true);
+	}
+	
+	public void setDatosUsuario(Usuario u){
+		nombre.setText(u.getNombre());
+		String[] apellido = u.getApellido().split("[ ]");
+		apellido1.setText(apellido[0]);
+		if(apellido.length == 1) {
+			apellido2.setText("");
+		}else {
+			apellido2.setText(apellido[1]);
+		}
+		alias.setText(u.getAlias());
+		correo.setText(u.getCorreo());
+		correo.setEditable(false);
+		contrasena.setText(u.getContrasena());
+		confirmarContrasena.setText(u.getContrasena());
+		fechaNacimiento.setText(u.getFecha_Nacimiento());
 	}
 
 	public JTextField getNombre() {
@@ -179,6 +207,10 @@ public class EditarPerfil extends JPanel {
 		return confirmarPerfil;
 	}
 	
+	public JButton getCancelar () {
+		return cancelar;
+	}
+	
 	public void setError (String txt) {
 		tError.setText("Error, " + txt);
 	}
@@ -189,5 +221,7 @@ public class EditarPerfil extends JPanel {
 
 	public void setActionListeners(ActionListener l) {
 		confirmarPerfil.addActionListener(l);
+		cancelar.addActionListener(l);
 	}
+	
 }

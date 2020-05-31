@@ -5,37 +5,34 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Controlador.CtrInicioSesion;
-import Controlador.CtrRegistrarse;
+import Controlador.Controlador;
 import Modelo.Excepcion;
 import Modelo.Usuario;
 import Vista.Vista;
 
 class TestsRegistrarse {
-
 	private Vista v;
 	private Usuario u;
-	private CtrRegistrarse registrarse;
-	private CtrInicioSesion inicio;
-	
+	private Controlador controlador;
+
 	@BeforeEach
-	void init () {
+	void init() {
 		v = new Vista();
 		u = null;
-		
-		registrarse = new CtrRegistrarse(v,u);
-		inicio = new CtrInicioSesion(u,v,registrarse);
+
+		controlador = new Controlador(u, v);
 	}
-	
+
 	@Test
-	void testUsuarioExistente () {
-		Exception e = assertThrows(Excepcion.class, () -> Usuario.nuevoUsuario("Nicolas", "Quintana", "nicoqm", "nico@gmail.com", "12355", "2012-12-12","Modificado"));
+	void testUsuarioExistente() {
+		Exception e = assertThrows(Excepcion.class, () -> Usuario.nuevoUsuario("Nicolas", "Quintana", "nicoqm",
+				"nico@gmail.com", "12355", "2012-12-12", "Modificado"));
 		assertEquals("no se ha podido añadir al usuario", e.getMessage());
 	}
-	
+
 	@Test
-	void testErrorContrasena () {
-		
+	void testErrorContrasena() {
+
 		v.getEditarPerfil().getCorreo().setText("Correo");
 		v.getEditarPerfil().getNombre().setText("Nombre");
 		v.getEditarPerfil().getApellido().setText("ap");
@@ -47,11 +44,10 @@ class TestsRegistrarse {
 		v.getEditarPerfil().getButton().doClick();
 		assertEquals("Error, contraseñas no iguales", v.getEditarPerfil().getError().getText());
 	}
-	
+
 	@Test
-	void testFaltanDatos () {
+	void testFaltanDatos() {
 		v.getEditarPerfil().getButton().doClick();
 		assertEquals("Error, faltan datos", v.getEditarPerfil().getError().getText());
 	}
-
 }

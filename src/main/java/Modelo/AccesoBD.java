@@ -1,7 +1,9 @@
 package Modelo;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 public class AccesoBD {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -57,7 +59,7 @@ public class AccesoBD {
 	}
 	
 	public void anadirUsuario (Usuario usuario) throws Excepcion {
-		String insertBody = "INSERT INTO Usuario (Correo,Nombre,Apellidos,Alias,Contraseña,Fecha_Nacimiento,Descripcion)"
+		String insertBody = "INSERT INTO Usuario (Correo,Nombre,Apellidos,Alias,Contrasena,Fecha_Nacimiento,Descripcion)"
 				+ " values (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
@@ -78,9 +80,9 @@ public class AccesoBD {
 		}
 	}
 	
-	public void updateUsuario (Usuario usuario) {
+	public void updateUsuario (Usuario usuario) throws Excepcion {
 		try {
-			String updateBody = "UPDATE Usuario SET Nombre = ?, Apellidos = ?, Alias = ?, Contraseña = ?, "
+			String updateBody = "UPDATE Usuario SET Nombre = ?, Apellidos = ?, Alias = ?, Contrasena = ?, "
 					+ "Fecha_Nacimiento = ?, Descripcion = ? WHERE (Correo = ?)";
 			
 			PreparedStatement preparedStatement = conn.prepareStatement(updateBody);
@@ -95,7 +97,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new Excepcion("no se ha podido modificar el usuario");
 		}
 	}
 	
@@ -151,37 +153,189 @@ public class AccesoBD {
 		}
 	}
 	
-	public void añadirHabitacion (Habitacion hab) {
-        String insertBody = "INSERT INTO Habitacion (idHabitacion,Direccion,Numero,Planta,Puerta,Descripcion,Tamaño,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
-                + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public void anadirHabitacion (Habitacion hab) throws Excepcion {
+        String insertBody = "INSERT INTO Habitacion (Direccion,Numero,Planta,Puerta,Descripcion,Tamaño,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
+                + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
                     PreparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, hab.getID());
-            preparedStatement.setString(2, hab.getDireccion());
-            preparedStatement.setInt(3, hab.getNumero());
-            preparedStatement.setInt(4, hab.getPlanta());
-            preparedStatement.setString(5, hab.getPuerta());
-            preparedStatement.setString(6, hab.getDescripcion());
-            preparedStatement.setInt(7, hab.getTamano());
-            preparedStatement.setBoolean(8, hab.isParking());
-            preparedStatement.setBoolean(9, hab.isTerraza());
-            preparedStatement.setBoolean(10, hab.isWifi());
-            preparedStatement.setBoolean(11, hab.isFumadores());
-            preparedStatement.setBoolean(12, hab.isMascotas());
-            preparedStatement.setBoolean(13, hab.isSoloEstudiantes());
-            preparedStatement.setBoolean(14, hab.isGastosIncluidos());
-            preparedStatement.setString(15, hab.getPropietario().getCorreo());
-            preparedStatement.setString(16, hab.getDistrito().getNombre());
-            preparedStatement.setInt(17, hab.getDistrito().getCodigoPostal());
+            preparedStatement.setString(1, hab.getDireccion());
+            preparedStatement.setInt(2, hab.getNumero());
+            preparedStatement.setInt(3, hab.getPlanta());
+            preparedStatement.setString(4, hab.getPuerta());
+            preparedStatement.setString(5, hab.getDescripcion());
+            preparedStatement.setInt(6, hab.getTamano());
+            preparedStatement.setBoolean(7, hab.isParking());
+            preparedStatement.setBoolean(8, hab.isTerraza());
+            preparedStatement.setBoolean(9, hab.isWifi());
+            preparedStatement.setBoolean(10, hab.isFumadores());
+            preparedStatement.setBoolean(11, hab.isMascotas());
+            preparedStatement.setBoolean(12, hab.isSoloEstudiantes());
+            preparedStatement.setBoolean(13, hab.isGastosIncluidos());
+            preparedStatement.setString(14, hab.getPropietario().getCorreo());
+            preparedStatement.setString(15, hab.getDistrito().getNombre());
+            preparedStatement.setInt(16, hab.getDistrito().getCodigoPostal());
 
             preparedStatement.executeUpdate();
+            
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            int idHabitacion = 0;
+            while (rs.next()) {
+            	idHabitacion = rs.getInt(1);
+            }
+            
+            hab.setId(idHabitacion);
+            
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new Excepcion("fallo al añadir la habitacion");
         }
 
+    }
+	
+	public Vector<String> getDistritos () {
+		String selectQueryBody = "SELECT * FROM Distrito";
+		Vector<String> res = new Vector<String>();
+		
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(selectQueryBody);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			while (rs.next()) {
+				res.add(rs.getString(2));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	public Distrito buscarDistrito (String nombre) {
+		String selectQueryBody = "SELECT * FROM Distrito WHERE Nombre = ?";
+		Distrito res = null;
+		
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(selectQueryBody);
+			preparedStatement.setString(1, nombre);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			while (rs.next()) {
+				res = new Distrito(rs.getString(2), rs.getInt(1)); 
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println(", al buscar distrito");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	public void anadirAnuncio (Anuncio anuncio) throws Excepcion {
+		String insertBody = "INSERT INTO Anuncio (idAnuncio,Precio,Fianza,Habitacion)"
+				+ " values (?,?,?,?)";
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			
+			preparedStatement.setInt(1, anuncio.getHabitacion().getID());
+			preparedStatement.setDouble(2, anuncio.getPrecioMes());
+			preparedStatement.setDouble(3, anuncio.getFianza());
+			preparedStatement.setInt(4, anuncio.getHabitacion().getID());
+			
+			
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new Excepcion("no se ha podido añadir el anuncio");
+		}
+	}
+	
+	public List<Anuncio> filtrar (Distrito distrito, double pMinimo, double pMaximo, boolean parking, boolean terraza,
+			boolean wifi, boolean fumadores, boolean mascotas, boolean estudiantes, boolean gastos) {
+		
+		
+		String selectQueryBody = "SELECT * " +
+				"FROM Habitacion as H join Anuncio as A on (H.idHabitacion = A.Habitacion) " +
+				"WHERE A.Precio > ? AND A.Precio < ? AND H.DistritoNombre = ? AND " +
+				"H.Parking = ? AND H.Terraza = ? AND H.Wifi = ? AND H.Fumadores = ? AND " +
+				"H.Mascotas = ? AND H.Solo_Estudiantes = ? AND H.Gastos_Incluidos = ?";
+		
+		List<Anuncio> res = new LinkedList<Anuncio>();
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(selectQueryBody);
+			
+			preparedStatement.setDouble(1, pMinimo);
+			preparedStatement.setDouble(2, pMaximo);
+			preparedStatement.setString(3, distrito.getNombre());
+			preparedStatement.setBoolean(4, parking);
+			preparedStatement.setBoolean(5, terraza);
+			preparedStatement.setBoolean(6, wifi);
+			preparedStatement.setBoolean(7, fumadores);
+			preparedStatement.setBoolean(8, mascotas);
+			preparedStatement.setBoolean(9, estudiantes);
+			preparedStatement.setBoolean(10, gastos);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				Propietario propietario = new Propietario(buscarUsuario(rs.getString(15)));
+				
+				Habitacion hab = new Habitacion(rs.getInt(1), rs.getString(2), rs.getInt(3),
+						rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getBoolean(8),
+						rs.getBoolean(9), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12),
+						rs.getBoolean(13), rs.getBoolean(14), true, propietario, distrito);
+				
+				Anuncio anuncio = new Anuncio(rs.getDouble(19), rs.getDouble(20), hab);
+				res.add(anuncio);
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("fallo al filtrar");
+		}
+		return res;
+	}
+	public List<Anuncio> getAnuncios () {
+        String selectQueryBody = "SELECT * " +
+                "FROM Habitacion as H join Anuncio as A on (H.idHabitacion = A.Habitacion)";
+
+        List<Anuncio> res = new LinkedList<Anuncio>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(selectQueryBody);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Propietario propietario = new Propietario(buscarUsuario(rs.getString(15)));
+                Distrito distrito = buscarDistrito(rs.getString(16));
+
+                Habitacion hab = new Habitacion(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                        rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getBoolean(8),
+                        rs.getBoolean(9), rs.getBoolean(10), rs.getBoolean(11), rs.getBoolean(12),
+                        rs.getBoolean(13), rs.getBoolean(14), true, propietario, distrito);
+
+                Anuncio anuncio = new Anuncio(rs.getDouble(19), rs.getDouble(20), hab);
+                res.add(anuncio);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+        return res;
     }
 
 }

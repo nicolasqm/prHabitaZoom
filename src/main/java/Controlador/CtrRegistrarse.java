@@ -8,47 +8,48 @@ import Modelo.Excepcion;
 import Modelo.Usuario;
 import Vista.Vista;
 
-
 public class CtrRegistrarse implements ActionListener {
-
-	Vista vista;
 	Usuario usuario;
+	Vista vista;
 	AccesoBD bdd = AccesoBD.getInstance();
 
-	public CtrRegistrarse(Vista v, Usuario u) {
-		vista = v;
+	public CtrRegistrarse(Usuario u, Vista v) {
 		usuario = u;
+		vista = v;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 
 		if (action.equals("Confirmar Perfil")) {
 			try {
-				System.out.println(vista.getEditarPerfil().getCorreo().getText());
 				if (bdd.buscarUsuario(vista.getEditarPerfil().getCorreo().getText()) == null) {
-					if (vista.getEditarPerfil().getConfirmarContrasena().getText().equals(vista.getEditarPerfil().getContrasena().getText())) {
+					if (vista.getEditarPerfil().getConfirmarContrasena().getText()
+							.equals(vista.getEditarPerfil().getContrasena().getText())) {
 						Usuario.nuevoUsuario(vista.getEditarPerfil().getNombre().getText(),
-							vista.getEditarPerfil().getApellido().getText() + " " + vista.getEditarPerfil().getApellido2().getText(),
-							vista.getEditarPerfil().getAlias().getText(), vista.getEditarPerfil().getCorreo().getText(),
-							vista.getEditarPerfil().getConfirmarContrasena().getText(),
-							vista.getEditarPerfil().getFechaNacimiento().getText(),null);
-					vista.getEditarPerfil().setVisible(false);
-					vista.getIniciarSesion().setVisible(true);
-					} else {
+								vista.getEditarPerfil().getApellido().getText() + " "
+										+ vista.getEditarPerfil().getApellido2().getText(),
+								vista.getEditarPerfil().getAlias().getText(),
+								vista.getEditarPerfil().getCorreo().getText(),
+								vista.getEditarPerfil().getConfirmarContrasena().getText(),
+								vista.getEditarPerfil().getFechaNacimiento().getText(), null);
+						vista.getEditarPerfil().setVisible(false);
+						vista.getIniciarSesion().setVisible(true);
+					}else {
 						throw new Excepcion("contraseñas no iguales");
 					}
 				}
 			} catch (Excepcion ex1) {
-				
 				if (vista.getEditarPerfil().getCorreo().getText().equals("")) {
 					vista.getEditarPerfil().setError("faltan datos");
 				} else {
 					vista.getEditarPerfil().setError(ex1.getMessage());
 				}
-				
 			}
-		}
+		}else if(action.equals("Cancelar")){
+			vista.getEditarPerfil().setVisible(false);
+			vista.getIniciarSesion().setVisible(true);
+		
+	}
 	}
 }

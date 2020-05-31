@@ -1,19 +1,14 @@
-import Controlador.CtrInicioSesion;
-import Controlador.CtrRegistrarse;
+
+import Controlador.Controlador;
 import Modelo.Usuario;
 import Vista.Vista;
 
 public class Main {
-
 	public static void main(String[] args) {
+		Usuario usuario = new Usuario("", "", "", "", "", "");
 		Vista vista = new Vista();
-		Usuario u = null;
-		
-		CtrRegistrarse registrarse = new CtrRegistrarse(vista, u);
-		CtrInicioSesion inicioSesion = new CtrInicioSesion(u, vista, registrarse);
+		Controlador controlador = new Controlador(usuario, vista);
 		
 		vista.setVisible(true);
-
 	}
-
 }

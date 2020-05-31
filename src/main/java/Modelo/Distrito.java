@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.Vector;
 
 public class Distrito {
 	private String nombre;
@@ -23,5 +24,10 @@ public class Distrito {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public static Vector<String> getDistritos(){
+		AccesoBD accesoBD = AccesoBD.getInstance();
+		return accesoBD.getDistritos();
 	}
 }

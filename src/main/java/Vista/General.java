@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class General extends JPanel {
 
 	private JPanel panelSecundario;
