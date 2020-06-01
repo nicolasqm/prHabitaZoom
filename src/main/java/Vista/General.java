@@ -17,46 +17,39 @@ public class General extends JPanel {
 	private JLabel general;
 	private JButton filtros;
 	private ListaHabitaciones listaHabitaciones;
-	
-	
+
 	public General() {
 		setLayout(new BorderLayout(0, 0));
-		
+
 		panelSecundario = new JPanel();
 		add(panelSecundario, BorderLayout.NORTH);
 		panelSecundario.setLayout(new GridLayout(0, 2, 0, 0));
-		
+
 		general = new JLabel("General: ");
-		general.setFont(new Font(Font.DIALOG,Font.BOLD,17));
+		general.setFont(new Font(Font.DIALOG, Font.BOLD, 17));
 		panelSecundario.add(general);
-		
+
 		filtros = new JButton("Filtro");
-		filtros.setFont(new Font(Font.DIALOG,Font.BOLD,17));
+		filtros.setFont(new Font(Font.DIALOG, Font.BOLD, 17));
 		panelSecundario.add(filtros);
-		
+
 		listaHabitaciones = new ListaHabitaciones();
 		add(listaHabitaciones, BorderLayout.CENTER);
-		
+
 		listaHabitaciones.setVisible(true);
-		
-		
-		
 
 	}
-	
+
 	public JButton getBotonFiltro() {
 		return filtros;
 	}
-	
+
 	public ListaHabitaciones getLista() {
 		return listaHabitaciones;
 	}
-	
+
 	public void setActionListeners(ActionListener l) {
 		filtros.addActionListener(l);
 	}
-	
-	
-	
 
 }

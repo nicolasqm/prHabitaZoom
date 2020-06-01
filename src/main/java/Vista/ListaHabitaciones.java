@@ -22,7 +22,7 @@ public class ListaHabitaciones extends JScrollPane {
 	public ListaHabitaciones() {
 		listaHabitacionVistas = new ArrayList<HabitacionVista>();
 		panel = new JPanel();
-		
+
 		filas = 6;
 		nHabitaciones = 0;
 		panel.setLayout(new GridLayout(filas, 0, 0, 0));
@@ -30,38 +30,38 @@ public class ListaHabitaciones extends JScrollPane {
 		List<Anuncio> lista = AccesoBD.getInstance().getAnuncios();
 		anadirListaAnuncios(lista);
 		this.setViewportView(panel);
-		
+
 	}
-	
-	public ArrayList<HabitacionVista> getLista(){
+
+	public ArrayList<HabitacionVista> getLista() {
 		return listaHabitacionVistas;
 	}
-		
+
 	public void anadirHabitacion(Anuncio anuncio) {
 		HabitacionVista h = new HabitacionVista(anuncio);
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
-		if(nHabitaciones == filas+1) {
-			filas = filas+1;
-			panel.setLayout(new GridLayout(filas,0,0,0));
+		if (nHabitaciones == filas + 1) {
+			filas = filas + 1;
+			panel.setLayout(new GridLayout(filas, 0, 0, 0));
 			Dimension dim = panel.getSize();
-			panel.setPreferredSize(new Dimension(dim.width, dim.height+400));
+			panel.setPreferredSize(new Dimension(dim.width, dim.height + 400));
 		}
-		if(nHabitaciones != 1) {
-			listaHabitacionVistas.get(nHabitaciones-2).getSeparator().setVisible(true);
+		if (nHabitaciones != 1) {
+			listaHabitacionVistas.get(nHabitaciones - 2).getSeparator().setVisible(true);
 		}
 		panel.add(h);
 	}
-	
+
 	public void borrarTodasLasHabitaciones() {
 		panel.removeAll();
 		listaHabitacionVistas.clear();
 		nHabitaciones = 0;
 		filas = 6;
 	}
-	
+
 	public void anadirListaAnuncios(List<Anuncio> lista) {
-		for(int pos = 0; pos<lista.size(); pos++) {
+		for (int pos = 0; pos < lista.size(); pos++) {
 			anadirHabitacion(lista.get(pos));
 		}
 	}

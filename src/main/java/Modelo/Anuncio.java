@@ -4,19 +4,17 @@ public class Anuncio {
 	private double precioMes;
 	private double fianza;
 	private Habitacion habitacion;
-	
-	
+
 	public Anuncio(double precioMes, double fianza, Habitacion habitacion) {
 		this.precioMes = precioMes;
 		this.fianza = fianza;
 		this.habitacion = habitacion;
 	}
 
-	
 	public Habitacion getHabitacion() {
 		return habitacion;
 	}
-	
+
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
@@ -25,21 +23,17 @@ public class Anuncio {
 		return precioMes;
 	}
 
-
 	public void setPrecioMes(double precioMes) {
 		this.precioMes = precioMes;
 	}
-
 
 	public double getFianza() {
 		return fianza;
 	}
 
-
 	public void setFianza(double fianza) {
 		this.fianza = fianza;
 	}
-
 
 //	public boolean isParking() {
 //		return parking;
@@ -99,6 +93,5 @@ public class Anuncio {
 //	public void setGastosIncluidos(boolean gastosIncluidos) {
 //		this.gastosIncluidos = gastosIncluidos;
 //	}
-	
-	
+
 }

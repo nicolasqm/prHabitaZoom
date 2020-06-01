@@ -13,14 +13,14 @@ import Vista.Vista;
 class TestsRegistrarse {
 	private Vista v;
 	private Usuario u;
-	private Controlador controlador;
+	private Controlador c;
 
 	@BeforeEach
 	void init() {
 		v = new Vista();
 		u = null;
 
-		controlador = new Controlador(u, v);
+		c = new Controlador(u, v);
 	}
 
 	@Test
@@ -49,5 +49,11 @@ class TestsRegistrarse {
 	void testFaltanDatos() {
 		v.getEditarPerfil().getButton().doClick();
 		assertEquals("Error, faltan datos", v.getEditarPerfil().getError().getText());
+	}
+
+	@Test
+	void testBotonCancelar() {
+		v.getEditarPerfil().getCancelar().doClick();
+		assertTrue(v.getIniciarSesion().isVisible());
 	}
 }

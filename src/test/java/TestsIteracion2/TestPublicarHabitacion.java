@@ -12,25 +12,26 @@ import Vista.Vista;
 class TestPublicarHabitacion {
 	private Vista v;
 	private Usuario u;
-	private Controlador controlador;
+	private Controlador c;
 
 	@BeforeEach
 	void init() {
 		v = new Vista();
 		u = new Usuario("", "", "", "", "", "");
 
-		controlador = new Controlador(u, v);
+		c = new Controlador(u, v);
 		v.getIniciarSesion().getTextoUsuario().setText("nico@gmail.com");
 		v.getIniciarSesion().getTextoContrasena().setText("12355");
 
 		v.getIniciarSesion().getBotonIniciarSesion().doClick();
 		v.getBotonPublicar().doClick();
 	}
+
 	@Test
 	void testBotonPublicar() {
 		assertTrue(v.getPublicarVista().isVisible());
 	}
-	
+
 	@Test
 	void testFaltaCampo() {
 		v.getPublicarVista().getBotonAceptar().doClick();

@@ -1,7 +1,7 @@
 package Modelo;
 
 public class Usuario {
-	
+
 	private String nombre;
 	private String apellido;
 	private String alias;
@@ -9,44 +9,44 @@ public class Usuario {
 	private String contrasena;
 	private String fecha_Nacimiento;
 	private String descripcion;
-	
-	
-	public Usuario(String n,String a,String al,String c, String cont, String nac) {
-		this.nombre=n;
-		this.apellido=a;
-		this.alias=al;
-		this.correo=c;
-		this.contrasena=cont;
-		this.fecha_Nacimiento=nac;
+
+	public Usuario(String n, String a, String al, String c, String cont, String nac) {
+		this.nombre = n;
+		this.apellido = a;
+		this.alias = al;
+		this.correo = c;
+		this.contrasena = cont;
+		this.fecha_Nacimiento = nac;
 	}
-	
-	public Usuario(String n,String a,String al,String c, String cont, String nac, String descripcion) {
-		this(n,a,al,c,cont,nac);
-		this.descripcion=descripcion;
+
+	public Usuario(String n, String a, String al, String c, String cont, String nac, String descripcion) {
+		this(n, a, al, c, cont, nac);
+		this.descripcion = descripcion;
 	}
-	
-	public static Usuario inicioSesion(String correo,String contrasena) throws Excepcion {
 
-        AccesoBD aux = AccesoBD.getInstance();
+	public static Usuario inicioSesion(String correo, String contrasena) throws Excepcion {
 
-        Usuario res= aux.buscarUsuario(correo);
+		AccesoBD aux = AccesoBD.getInstance();
 
-        if(res==null) {
-            throw new Excepcion("no existe ese usuario");
-        } else if(!res.getContrasena().equals(contrasena)) {
-            throw new Excepcion("contraseña incorrecta");
-        }
+		Usuario res = aux.buscarUsuario(correo);
 
-        return res;
-    }
-	
-	public static void nuevoUsuario(String n,String a,String al,String c, String cont, String nac, String descripcion) throws Excepcion {
+		if (res == null) {
+			throw new Excepcion("no existe ese usuario");
+		} else if (!res.getContrasena().equals(contrasena)) {
+			throw new Excepcion("contraseña incorrecta");
+		}
 
-        Usuario usr = new Usuario(n,a,al,c,cont,nac,descripcion);
-        AccesoBD aux = AccesoBD.getInstance();
+		return res;
+	}
+
+	public static void nuevoUsuario(String n, String a, String al, String c, String cont, String nac,
+			String descripcion) throws Excepcion {
+
+		Usuario usr = new Usuario(n, a, al, c, cont, nac, descripcion);
+		AccesoBD aux = AccesoBD.getInstance();
 		aux.anadirUsuario(usr);
 
-    }
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -103,10 +103,10 @@ public class Usuario {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	public String toString () {
-		return "Correo: " + correo + " || alias: " + alias + " || pass: " + contrasena
-				+ " || fecha: " + fecha_Nacimiento;
+
+	public String toString() {
+		return "Correo: " + correo + " || alias: " + alias + " || pass: " + contrasena + " || fecha: "
+				+ fecha_Nacimiento;
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class Usuario {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Usuario) && ((Usuario) obj).correo.equals(correo) && 
-				((Usuario) obj).alias.equals(alias) && ((Usuario) obj).contrasena.equals(contrasena);
+		return (obj instanceof Usuario) && ((Usuario) obj).correo.equals(correo) && ((Usuario) obj).alias.equals(alias)
+				&& ((Usuario) obj).contrasena.equals(contrasena);
 	}
 }

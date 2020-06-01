@@ -9,12 +9,10 @@ import Modelo.Usuario;
 import Vista.Vista;
 
 public class CtrRegistrarse implements ActionListener {
-	Usuario usuario;
-	Vista vista;
-	AccesoBD bdd = AccesoBD.getInstance();
+	private Vista vista;
+	private AccesoBD bdd = AccesoBD.getInstance();
 
-	public CtrRegistrarse(Usuario u, Vista v) {
-		usuario = u;
+	public CtrRegistrarse(Vista v) {
 		vista = v;
 	}
 
@@ -35,7 +33,7 @@ public class CtrRegistrarse implements ActionListener {
 								vista.getEditarPerfil().getFechaNacimiento().getText(), null);
 						vista.getEditarPerfil().setVisible(false);
 						vista.getIniciarSesion().setVisible(true);
-					}else {
+					} else {
 						throw new Excepcion("contraseñas no iguales");
 					}
 				}
@@ -46,10 +44,12 @@ public class CtrRegistrarse implements ActionListener {
 					vista.getEditarPerfil().setError(ex1.getMessage());
 				}
 			}
-		}else if(action.equals("Cancelar")){
+		} else if (action.equals("Cancelar")) {
 			vista.getEditarPerfil().setVisible(false);
 			vista.getIniciarSesion().setVisible(true);
-		
-	}
+			vista.getEditarPerfil().borra();
+			vista.getEditarPerfil().borrarMensajeError();
+
+		}
 	}
 }

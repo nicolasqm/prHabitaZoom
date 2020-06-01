@@ -16,7 +16,7 @@ import Modelo.Usuario;
 
 @SuppressWarnings("serial")
 public class EditarPerfil extends JPanel {
-	
+
 	private JLabel tModificarPerfil;
 
 	private JLabel tNombre = new JLabel("Nombre: ");
@@ -44,7 +44,7 @@ public class EditarPerfil extends JPanel {
 	// obligatorios: true = se debe rellenar los campos obligatorios, false = todos
 	// los campos son opcionales
 	private boolean obligatorios;
-	
+
 	public EditarPerfil(boolean camposObligatorios) {
 		obligatorios = camposObligatorios;
 		tModificarPerfil = new JLabel(
@@ -57,15 +57,15 @@ public class EditarPerfil extends JPanel {
 		correo = new JTextField();
 		contrasena = new JPasswordField();
 		confirmarContrasena = new JPasswordField();
-		
+
 		setLayout(new GridLayout(11, 1, 0, 0));
-		tModificarPerfil.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		tModificarPerfil.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		add(tModificarPerfil);
 
 		JPanel p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
-		tNombre.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		nombre.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tNombre.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		nombre.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		nombre.setColumns(20);
 		p1.add(tNombre);
 		p1.add(nombre);
@@ -73,8 +73,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p2 = new JPanel();
 		p2.setLayout(new FlowLayout());
-		tApellido1.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		apellido1.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tApellido1.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		apellido1.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		apellido1.setColumns(20);
 		p2.add(tApellido1);
 		p2.add(apellido1);
@@ -82,8 +82,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
-		tApellido2.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		apellido2.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tApellido2.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		apellido2.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		apellido2.setColumns(20);
 		p3.add(tApellido2);
 		p3.add(apellido2);
@@ -91,8 +91,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p4 = new JPanel();
 		p4.setLayout(new FlowLayout());
-		tFechaNacimiento.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		fechaNacimiento.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tFechaNacimiento.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		fechaNacimiento.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		fechaNacimiento.setColumns(20);
 		p4.add(tFechaNacimiento);
 		p4.add(fechaNacimiento);
@@ -100,8 +100,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p5 = new JPanel();
 		p5.setLayout(new FlowLayout());
-		tAlias.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		alias.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tAlias.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		alias.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		alias.setColumns(20);
 		p5.add(tAlias);
 		p5.add(alias);
@@ -109,8 +109,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p6 = new JPanel();
 		p6.setLayout(new FlowLayout());
-		tCorreo.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		correo.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tCorreo.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		correo.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		correo.setColumns(20);
 		p6.add(tCorreo);
 		p6.add(correo);
@@ -118,8 +118,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p7 = new JPanel();
 		p7.setLayout(new FlowLayout());
-		tContrasena.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		contrasena.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tContrasena.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		contrasena.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		contrasena.setColumns(20);
 		p7.add(tContrasena);
 		p7.add(contrasena);
@@ -127,8 +127,8 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p8 = new JPanel();
 		p8.setLayout(new FlowLayout());
-		tConfirmarContrasena.setFont(new Font(Font.DIALOG,Font.BOLD,20));
-		confirmarContrasena.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		tConfirmarContrasena.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		confirmarContrasena.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		confirmarContrasena.setColumns(20);
 		p8.add(tConfirmarContrasena);
 		p8.add(confirmarContrasena);
@@ -136,31 +136,30 @@ public class EditarPerfil extends JPanel {
 
 		JPanel p9 = new JPanel();
 		p9.setLayout(new FlowLayout());
-		confirmarPerfil.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		confirmarPerfil.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		p9.add(confirmarPerfil);
 		p9.add(tError);
 		add(p9);
-		
-		
-		JPanel p10=new JPanel();
+
+		JPanel p10 = new JPanel();
 		p10.setLayout(new FlowLayout());
-		cancelar.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		cancelar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		p10.add(cancelar);
 		add(p10);
-		
+
 	}
 
 	public EditarPerfil() {
 		this(true);
 	}
-	
-	public void setDatosUsuario(Usuario u){
+
+	public void setDatosUsuario(Usuario u) {
 		nombre.setText(u.getNombre());
 		String[] apellido = u.getApellido().split("[ ]");
 		apellido1.setText(apellido[0]);
-		if(apellido.length == 1) {
+		if (apellido.length == 1) {
 			apellido2.setText("");
-		}else {
+		} else {
 			apellido2.setText(apellido[1]);
 		}
 		alias.setText(u.getAlias());
@@ -178,8 +177,8 @@ public class EditarPerfil extends JPanel {
 	public JTextField getApellido() {
 		return apellido1;
 	}
-	
-	public JTextField getApellido2 () {
+
+	public JTextField getApellido2() {
 		return apellido2;
 	}
 
@@ -190,8 +189,8 @@ public class EditarPerfil extends JPanel {
 	public JTextField getCorreo() {
 		return correo;
 	}
-	
-	public JTextField getContrasena () {
+
+	public JTextField getContrasena() {
 		return contrasena;
 	}
 
@@ -202,26 +201,41 @@ public class EditarPerfil extends JPanel {
 	public JTextField getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	
-	public JButton getButton () {
+
+	public JButton getButton() {
 		return confirmarPerfil;
 	}
-	
-	public JButton getCancelar () {
+
+	public JButton getCancelar() {
 		return cancelar;
 	}
-	
-	public void setError (String txt) {
+
+	public void setError(String txt) {
 		tError.setText("Error, " + txt);
 	}
-	
-	public JLabel getError () {
+
+	public JLabel getError() {
 		return tError;
+	}
+
+	public void borrarMensajeError() {
+		this.tError.setText("");
+	}
+
+	public void borra() {
+		nombre.setText("");
+		apellido1.setText("");
+		apellido2.setText("");
+		alias.setText("");
+		correo.setText("");
+		contrasena.setText("");
+		confirmarContrasena.setText("");
+		fechaNacimiento.setText("");
 	}
 
 	public void setActionListeners(ActionListener l) {
 		confirmarPerfil.addActionListener(l);
 		cancelar.addActionListener(l);
 	}
-	
+
 }

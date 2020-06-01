@@ -14,36 +14,22 @@ public class Controlador {
 	private CtrGeneral general;
 	private CtrMostrarPerfil mostrarPerfil;
 	private CtrModificarPerfil modificarPerfil;
-	
+
 	public Controlador(Usuario u, Vista v) {
 		usuario = u;
 		vista = v;
-		
+
 		inicioSesion = new CtrInicioSesion(usuario, vista);
-		registrarse = new CtrRegistrarse(usuario, vista);
-		panelBotones = new CtrPanelBotones(vista,usuario);
-		publicar = new CtrPublicar(vista,usuario);
-		filtro=new CtrFiltro(vista);
+		registrarse = new CtrRegistrarse(vista);
+		panelBotones = new CtrPanelBotones(usuario, vista);
+		publicar = new CtrPublicar(usuario, vista);
+		filtro = new CtrFiltro(vista);
 		general = new CtrGeneral(vista);
 		mostrarPerfil = new CtrMostrarPerfil(usuario, vista);
 		modificarPerfil = new CtrModificarPerfil(usuario, vista);
-	
-		
-		vista.setActionListeners(inicioSesion, registrarse,panelBotones,publicar,filtro,general,mostrarPerfil,modificarPerfil);
+
+		vista.setActionListeners(inicioSesion, registrarse, panelBotones, publicar, filtro, general, mostrarPerfil,
+				modificarPerfil);
 	}
 
-	public CtrInicioSesion getCtrInicioSesion() {
-		return inicioSesion;
-	}
-	
-
-	public CtrRegistrarse getCtrRegistrarse() {
-		return registrarse;
-	}
-	
-	public CtrFiltro getCtrFiltro() {
-		return filtro;
-	}
-	
-	
 }

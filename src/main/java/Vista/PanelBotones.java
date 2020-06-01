@@ -16,28 +16,28 @@ public class PanelBotones extends JPanel {
 	private JButton publicar;
 	private JButton chat;
 	private JButton perfil;
-	
+
 	public PanelBotones() {
 		setLayout(new GridLayout(0, 5, 0, 0));
-		
+
 		general = new JButton("General");
-		general.setFont(new Font(Font.DIALOG,Font.BOLD,15));
+		general.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 		add(general);
-		
+
 		calendario = new JButton("Calendario");
-		calendario.setFont(new Font(Font.DIALOG,Font.BOLD,15));
+		calendario.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 		add(calendario);
-		
+
 		publicar = new JButton("Publicar");
-		publicar.setFont(new Font(Font.DIALOG,Font.BOLD,19));
+		publicar.setFont(new Font(Font.DIALOG, Font.BOLD, 19));
 		add(publicar);
-		
+
 		chat = new JButton("Chat");
-		chat.setFont(new Font(Font.DIALOG,Font.BOLD,15));
+		chat.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 		add(chat);
-		
+
 		perfil = new JButton("Perfil");
-		perfil.setFont(new Font(Font.DIALOG,Font.BOLD,15));
+		perfil.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 		add(perfil);
 
 	}
@@ -61,7 +61,7 @@ public class PanelBotones extends JPanel {
 	public JButton getPerfil() {
 		return perfil;
 	}
-	
+
 	public void setActionListeners(ActionListener l) {
 		general.addActionListener(l);
 		calendario.addActionListener(l);

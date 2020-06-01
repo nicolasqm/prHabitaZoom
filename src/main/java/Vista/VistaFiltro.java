@@ -14,8 +14,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
 
-
-public class VistaFiltro extends JPanel{
+public class VistaFiltro extends JPanel {
 
 	/**
 	 * 
@@ -36,153 +35,149 @@ public class VistaFiltro extends JPanel{
 	private JComboBox<String> Distrito;
 	private JComboBox<String> Ciudad;
 	private JLabel error;
-	
-	
 
 	public VistaFiltro() {
 		setLayout(new GridLayout(8, 2, 0, 0));
-		
+
 		JPanel panel = new JPanel();
 		add(panel);
-		
+
 		JLabel lblCiudad = new JLabel("Ciudad");
-		lblCiudad.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		lblCiudad.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel.add(lblCiudad);
-		
+
 		Ciudad = new JComboBox<String>();
-		Ciudad.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Ciudad.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel.add(Ciudad);
-		
+
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
-		
+
 		Wifi = new JCheckBox("Wifi");
-		Wifi.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Wifi.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_1.add(Wifi);
-		
+
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
-		
+
 		JLabel lblDistrito = new JLabel("Distrito");
-		lblDistrito.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		lblDistrito.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_2.add(lblDistrito);
-		
+
 		Distrito = new JComboBox<String>(AccesoBD.getInstance().getDistritos());
-		Distrito.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Distrito.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_2.add(Distrito);
-		
+
 		JPanel panel_3 = new JPanel();
 		add(panel_3);
-		
+
 		Mascota = new JCheckBox("Mascota");
-		Mascota.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Mascota.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_3.add(Mascota);
-		
+
 		JPanel panel_4 = new JPanel();
 		add(panel_4);
-		
+
 		JLabel lblPrecioMax = new JLabel("Precio Max");
-		lblPrecioMax.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		lblPrecioMax.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_4.add(lblPrecioMax);
-		
+
 		precioMax = new JTextField();
-		precioMax.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		precioMax.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		panel_4.add(precioMax);
 		precioMax.setColumns(10);
-		
+
 		JPanel panel_5 = new JPanel();
 		add(panel_5);
-		
+
 		GastosIncluidos = new JCheckBox("Gastos Incluidos");
-		GastosIncluidos.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		GastosIncluidos.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_5.add(GastosIncluidos);
-		
+
 		JPanel panel_6 = new JPanel();
 		add(panel_6);
-		
+
 		JLabel lblPrecioMin = new JLabel("Precio Min");
-		lblPrecioMin.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		lblPrecioMin.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_6.add(lblPrecioMin);
-		
+
 		precioMin = new JTextField();
-		precioMin.setFont(new Font(Font.DIALOG,Font.ROMAN_BASELINE,20));
+		precioMin.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 20));
 		panel_6.add(precioMin);
 		precioMin.setColumns(10);
-		
+
 		JPanel panel_7 = new JPanel();
 		add(panel_7);
-		
+
 		SoloEstudiantes = new JCheckBox("Solo Estudiantes");
-		SoloEstudiantes.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		SoloEstudiantes.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_7.add(SoloEstudiantes);
-		
+
 		JPanel panel_8 = new JPanel();
 		add(panel_8);
-		
+
 		JPanel panel_9 = new JPanel();
 		add(panel_9);
-		
+
 		Terraza = new JCheckBox("Terraza");
-		Terraza.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Terraza.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_9.add(Terraza);
-		
+
 		JPanel panel_10 = new JPanel();
 		add(panel_10);
-		
+
 		Cancelar = new JButton("Cancelar");
-		Cancelar.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Cancelar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_10.add(Cancelar);
-		
+
 		JPanel panel_11 = new JPanel();
 		add(panel_11);
-		
+
 		Fumador = new JCheckBox("Fumador");
-		Fumador.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Fumador.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_11.add(Fumador);
-		
+
 		JPanel panel_12 = new JPanel();
 		add(panel_12);
-		
+
 		Buscar = new JButton("Buscar");
-		Buscar.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Buscar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_12.add(Buscar);
-		
+
 		JPanel panel_13 = new JPanel();
 		add(panel_13);
-		
+
 		Parking = new JCheckBox("Parking");
-		Parking.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		Parking.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_13.add(Parking);
-		
+
 		JPanel panel_14 = new JPanel();
 		add(panel_14);
-		
+
 		error = new JLabel();
-		error.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		error.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel_14.add(error);
-		
+
 		JPanel panel_15 = new JPanel();
 		add(panel_15);
 
+	}
 
-		
-	}
-	
 	public void setError(String error) {
-		this.error.setText("Error, "+error);
+		this.error.setText("Error, " + error);
 	}
-	
+
 	public void borrarError() {
 		this.error.setText("");
 	}
-	
+
 	public JComboBox<String> getDistrito() {
 		return Distrito;
 	}
 
-	/*public JComboBox<String> getCiudad() {
-		return Ciudad;
-	}*/
+	/*
+	 * public JComboBox<String> getCiudad() { return Ciudad; }
+	 */
 
 	public void setActionListeners(ActionListener l) {
 		Cancelar.addActionListener(l);
@@ -216,7 +211,7 @@ public class VistaFiltro extends JPanel{
 	public JTextField getPrecioMin() {
 		return precioMin;
 	}
-	
+
 	public JLabel getError() {
 		return error;
 	}

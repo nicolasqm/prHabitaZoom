@@ -13,14 +13,14 @@ import Vista.Vista;
 class TestsIniciarSesion {
 	private Vista v;
 	private Usuario u;
-	private Controlador controlador;
+	private Controlador c;
 
 	@BeforeEach
 	void init() {
 		v = new Vista();
 		u = new Usuario("", "", "", "", "", "");
 
-		controlador = new Controlador(u, v);
+		c = new Controlador(u, v);
 	}
 
 	@Test
@@ -36,8 +36,8 @@ class TestsIniciarSesion {
 	@Test
 	void testUsuario() {
 		try {
-			Usuario previsto = new Usuario("Nicolas", "Quintana Marin", "nicoqm", "nico@gmail.com", "12355", "2000-04-25",
-					"Modificado");
+			Usuario previsto = new Usuario("Nicolas", "Quintana Marin", "nicoqm", "nico@gmail.com", "12355",
+					"2000-04-25", "Modificado");
 			Usuario login = Usuario.inicioSesion("nico@gmail.com", "12355");
 
 			assertEquals(previsto, login);

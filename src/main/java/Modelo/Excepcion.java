@@ -1,7 +1,7 @@
 package Modelo;
 
-public class Excepcion extends Exception{
-	
+public class Excepcion extends Exception {
+
 	/**
 	 * 
 	 */
@@ -10,7 +10,7 @@ public class Excepcion extends Exception{
 	public Excepcion() {
 		super();
 	}
-	
+
 	public Excepcion(String msg) {
 		super(msg);
 	}

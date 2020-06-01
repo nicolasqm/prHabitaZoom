@@ -28,6 +28,7 @@ public class CtrInicioSesion implements ActionListener {
 				Usuario u = Usuario.inicioSesion(correo, contrasena);
 				if (u != null) {
 					vista.getIniciarSesion().setVisible(false);
+					vista.getIniciarSesion().borrarMensajeError();
 					vista.getPanelPrincipal().setVisible(true);
 					usuario.setCorreo(u.getCorreo());
 					usuario.setAlias(u.getAlias());
@@ -43,7 +44,7 @@ public class CtrInicioSesion implements ActionListener {
 		} else if (comando.equals("Registrarse")) {
 			vista.getIniciarSesion().setVisible(false);
 			vista.getEditarPerfil().setVisible(true);
-			
+
 		}
 	}
 }
