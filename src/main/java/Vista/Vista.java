@@ -122,6 +122,38 @@ public class Vista extends JFrame {
 	// ----------------------------------------------------------
 	// Aqui empeiza los botones y texto de registrarse
 	// --------------------------------------------------------
+	public JTextField getTextoNombre() {
+		return registrarse.getNombre();
+	}
+
+	public JTextField getTextoApellido() {
+		return registrarse.getApellido();
+	}
+
+	public JTextField getTextoApellido2() {
+		return registrarse.getApellido2();
+	}
+
+	public JTextField getTextoAlias() {
+		return registrarse.getAlias();
+	}
+
+	public JTextField getTextoCorreo() {
+		return registrarse.getCorreo();
+	}
+
+	public JTextField getTextoContrasena() {
+		return registrarse.getContrasena();
+	}
+
+	public JTextField getTextoConfirmarContrasena() {
+		return registrarse.getConfirmarContrasena();
+	}
+
+	public JTextField getTextoFechaNacimiento() {
+		return registrarse.getFechaNacimiento();
+	}
+
 	public JButton getBotonCancelar() {
 		return registrarse.getCancelar();
 	}

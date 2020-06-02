@@ -21,16 +21,12 @@ public class CtrRegistrarse implements ActionListener {
 
 		if (action.equals("Confirmar Perfil")) {
 			try {
-				if (bdd.buscarUsuario(vista.getEditarPerfil().getCorreo().getText()) == null) {
-					if (vista.getEditarPerfil().getConfirmarContrasena().getText()
-							.equals(vista.getEditarPerfil().getContrasena().getText())) {
-						Usuario.nuevoUsuario(vista.getEditarPerfil().getNombre().getText(),
-								vista.getEditarPerfil().getApellido().getText() + " "
-										+ vista.getEditarPerfil().getApellido2().getText(),
-								vista.getEditarPerfil().getAlias().getText(),
-								vista.getEditarPerfil().getCorreo().getText(),
-								vista.getEditarPerfil().getConfirmarContrasena().getText(),
-								vista.getEditarPerfil().getFechaNacimiento().getText(), null);
+				if (bdd.buscarUsuario(vista.getTextoCorreo().getText()) == null) {
+					if (vista.getTextoConfirmarContrasena().getText().equals(vista.getTextoContrasena().getText())) {
+						Usuario.nuevoUsuario(vista.getTextoNombre().getText(),
+								vista.getTextoApellido().getText() + " " + vista.getTextoApellido2().getText(),
+								vista.getTextoAlias().getText(), vista.getTextoCorreo().getText(),
+								vista.getTextoContrasena().getText(), vista.getTextoFechaNacimiento().getText(), null);
 						vista.getEditarPerfil().setVisible(false);
 						vista.getIniciarSesion().setVisible(true);
 					} else {
@@ -38,7 +34,7 @@ public class CtrRegistrarse implements ActionListener {
 					}
 				}
 			} catch (Excepcion ex1) {
-				if (vista.getEditarPerfil().getCorreo().getText().equals("")) {
+				if (vista.getTextoCorreo().getText().equals("")) {
 					vista.getEditarPerfil().setError("faltan datos");
 				} else {
 					vista.getEditarPerfil().setError(ex1.getMessage());
