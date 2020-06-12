@@ -6,6 +6,10 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JSeparator;
+import javax.swing.JToggleButton;
+
+import org.objenesis.instantiator.basic.NewInstanceInstantiator;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 import Modelo.Anuncio;
 
@@ -19,10 +23,12 @@ public class HabitacionVista extends JPanel {
 	private JLabel puerta;
 	private JSeparator separator;
 	private JLabel distrito;
+	private JToggleButton favorito;
+	private Anuncio anuncio;
 
 	public HabitacionVista(Anuncio anuncio) {
 		setLayout(new BorderLayout(0, 0));
-
+		this.anuncio = anuncio;
 		auxiliar = new JPanel();
 		add(auxiliar, BorderLayout.CENTER);
 		auxiliar.setLayout(new GridLayout(5, 0, 0, 0));
@@ -35,11 +41,16 @@ public class HabitacionVista extends JPanel {
 		numero.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		auxiliar.add(numero);
 
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
 		planta = new JLabel("Planta: " + anuncio.getHabitacion().getPlanta());
 		planta.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+		panel.add(planta, BorderLayout.WEST);
+		favorito = new JToggleButton("Favorito");
+		panel.add(favorito,BorderLayout.EAST);
 		distrito = new JLabel("Distrito: " + anuncio.getHabitacion().getDistrito().getNombre());
 		distrito.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-		auxiliar.add(planta);
+		auxiliar.add(panel);
 		auxiliar.add(distrito);
 
 		puerta = new JLabel("Puerta: " + anuncio.getHabitacion().getPuerta());
@@ -54,6 +65,14 @@ public class HabitacionVista extends JPanel {
 
 	public JSeparator getSeparator() {
 		return separator;
+	}
+	
+	public JToggleButton getBotonFavoritos() {
+		return favorito;
+	}
+	
+	public Anuncio getAnuncio() {
+		return anuncio;
 	}
 
 }

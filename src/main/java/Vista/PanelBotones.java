@@ -14,7 +14,7 @@ public class PanelBotones extends JPanel {
 	private JButton general;
 	private JButton calendario;
 	private JButton publicar;
-	private JButton chat;
+	private JButton favoritos;
 	private JButton perfil;
 
 	public PanelBotones() {
@@ -32,9 +32,9 @@ public class PanelBotones extends JPanel {
 		publicar.setFont(new Font(Font.DIALOG, Font.BOLD, 19));
 		add(publicar);
 
-		chat = new JButton("Chat");
-		chat.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
-		add(chat);
+		favoritos = new JButton("Favoritos");
+		favoritos.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
+		add(favoritos);
 
 		perfil = new JButton("Perfil");
 		perfil.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
@@ -54,8 +54,8 @@ public class PanelBotones extends JPanel {
 		return publicar;
 	}
 
-	public JButton getChat() {
-		return chat;
+	public JButton getFavoritos() {
+		return favoritos;
 	}
 
 	public JButton getPerfil() {
@@ -66,7 +66,7 @@ public class PanelBotones extends JPanel {
 		general.addActionListener(l);
 		calendario.addActionListener(l);
 		publicar.addActionListener(l);
-		chat.addActionListener(l);
+		favoritos.addActionListener(l);
 		perfil.addActionListener(l);
 	}
 

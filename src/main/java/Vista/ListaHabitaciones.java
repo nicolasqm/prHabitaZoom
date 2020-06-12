@@ -1,14 +1,18 @@
 package Vista;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.CompoundControl;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Modelo.AccesoBD;
 import Modelo.Anuncio;
+import Modelo.Excepcion;
+import Modelo.Usuario;
 
 import java.awt.Dimension;
 
@@ -18,6 +22,7 @@ public class ListaHabitaciones extends JScrollPane {
 	private int filas;
 	private int nHabitaciones;
 	private JPanel panel;
+	private ActionListener controlador;
 
 	public ListaHabitaciones() {
 		listaHabitacionVistas = new ArrayList<HabitacionVista>();
@@ -39,6 +44,9 @@ public class ListaHabitaciones extends JScrollPane {
 
 	public void anadirHabitacion(Anuncio anuncio) {
 		HabitacionVista h = new HabitacionVista(anuncio);
+		if(controlador != null) {
+			h.getBotonFavoritos().addActionListener(controlador);	
+		}
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
 		if (nHabitaciones == filas + 1) {
@@ -64,6 +72,49 @@ public class ListaHabitaciones extends JScrollPane {
 		for (int pos = 0; pos < lista.size(); pos++) {
 			anadirHabitacion(lista.get(pos));
 		}
+	}
+	
+	public Anuncio buscarAnuncioSeleccionado(Usuario usuario) throws Excepcion {
+		List<Anuncio> anunciosYaFavoritos = AccesoBD.getInstance().getFavoritos(usuario);
+		int pos = 0;
+		Anuncio anuncio = null;
+		HabitacionVista auxiiar = null;
+		while(pos<listaHabitacionVistas.size() && anuncio == null) {
+			auxiiar = listaHabitacionVistas.get(pos);
+			if(auxiiar.getBotonFavoritos().isSelected() && !anunciosYaFavoritos.contains(auxiiar.getAnuncio())) {
+				anuncio = auxiiar.getAnuncio();
+				auxiiar.getBotonFavoritos().setVisible(false);
+				auxiiar.getBotonFavoritos().setSelected(false);
+			}else {
+				pos++;
+			}	
+			
+		}		
+		return anuncio;
+	}
+	
+	public void setActionListeners(ActionListener l) {
+		controlador = l;
+		for(int pos = 0; pos<listaHabitacionVistas.size(); pos++) {
+			listaHabitacionVistas.get(pos).getBotonFavoritos().addActionListener(l);
+		}
+	}
+	
+	public void desactivarBotonesFavoritos(List<Anuncio> anuciosFavoritos) {
+		for(int pos = 0; pos<listaHabitacionVistas.size(); pos++) {
+			if(anuciosFavoritos.contains(listaHabitacionVistas.get(pos).getAnuncio())) {
+				listaHabitacionVistas.get(pos).getBotonFavoritos().setSelected(false);
+				listaHabitacionVistas.get(pos).getBotonFavoritos().setVisible(false);
+			}
+		}
+	}
+	
+	public void activarBotonFavorito(Anuncio anuncio) {
+		int pos = 0;
+		while(pos<listaHabitacionVistas.size() && !anuncio.equals(listaHabitacionVistas.get(pos).getAnuncio())) {
+			pos++;
+		}
+		listaHabitacionVistas.get(pos).getBotonFavoritos().setVisible(true);
 	}
 
 }

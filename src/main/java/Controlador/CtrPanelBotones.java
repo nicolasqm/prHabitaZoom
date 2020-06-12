@@ -3,6 +3,8 @@ package Controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Modelo.AccesoBD;
+import Modelo.Excepcion;
 import Modelo.Usuario;
 import Vista.Vista;
 
@@ -23,6 +25,7 @@ public class CtrPanelBotones implements ActionListener {
 			vista.getPublicarVista().setVisible(true);
 			vista.getMostrarPerfil().setVisible(false);
 			vista.getVistaFiltro().setVisible(false);
+			vista.getVistaFavoritos().setVisible(false);
 			vista.borrarErrorFiltrar();
 			vista.borrarErrorModificarPerfil();
 		} else if (comando.equals("General")) {
@@ -34,6 +37,7 @@ public class CtrPanelBotones implements ActionListener {
 			vista.getPublicarVista().setVisible(false);
 			vista.getMostrarPerfil().setVisible(false);
 			vista.getGeneral().setVisible(true);
+			vista.getVistaFavoritos().setVisible(false);
 			vista.borrarErrorFiltrar();
 			vista.borrarErrorModificarPerfil();
 		} else if (comando.equals("Perfil")) {
@@ -46,8 +50,29 @@ public class CtrPanelBotones implements ActionListener {
 			vista.getGeneral().setVisible(false);
 			vista.getPublicarVista().setVisible(false);
 			vista.getModificarPerfil().setVisible(false);
+			vista.getVistaFavoritos().setVisible(false);
 			vista.borrarErrorFiltrar();
 			vista.borrarErrorModificarPerfil();
+		}else if(comando.equals("Favoritos")) {
+			if (vista.getPublicarVista().isVisible()) {
+				vista.borrarTextFieldPublicar();
+			}
+			vista.setUsuarioMostrarPerfil(usuario);
+			vista.getVistaFiltro().setVisible(false);
+			vista.getMostrarPerfil().setVisible(false);
+			vista.getGeneral().setVisible(false);
+			vista.getPublicarVista().setVisible(false);
+			vista.getModificarPerfil().setVisible(false);
+			vista.getVistaFavoritos().setVisible(true);
+			vista.borrarErrorFiltrar();
+			vista.borrarErrorModificarPerfil();
+			try {
+				vista.borrarTodosLosFavoritos();
+				vista.anadirListaFavoritos(AccesoBD.getInstance().getFavoritos(usuario));
+			} catch (Excepcion e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

@@ -14,22 +14,23 @@ public class Controlador {
 	private CtrGeneral general;
 	private CtrMostrarPerfil mostrarPerfil;
 	private CtrModificarPerfil modificarPerfil;
+	private CtrFavoritos favoritos;
 
 	public Controlador(Usuario u, Vista v) {
 		usuario = u;
 		vista = v;
-
+		
 		inicioSesion = new CtrInicioSesion(usuario, vista);
-		registrarse = new CtrRegistrarse(vista);
+		registrarse = new CtrRegistrarse(usuario, vista);
 		panelBotones = new CtrPanelBotones(usuario, vista);
 		publicar = new CtrPublicar(usuario, vista);
-		filtro = new CtrFiltro(vista);
+		filtro = new CtrFiltro(vista,usuario);
 		general = new CtrGeneral(vista);
 		mostrarPerfil = new CtrMostrarPerfil(usuario, vista);
 		modificarPerfil = new CtrModificarPerfil(usuario, vista);
-
+		favoritos = new CtrFavoritos(vista, usuario);
 		vista.setActionListeners(inicioSesion, registrarse, panelBotones, publicar, filtro, general, mostrarPerfil,
-				modificarPerfil);
+				modificarPerfil, favoritos);
 	}
 
 }
