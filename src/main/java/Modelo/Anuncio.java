@@ -1,7 +1,6 @@
 package Modelo;
 
 public class Anuncio {
-
 	private double precioMes;
 	private double fianza;
 	private Habitacion habitacion;
@@ -34,24 +33,6 @@ public class Anuncio {
 
 	public void setFianza(double fianza) {
 		this.fianza = fianza;
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(fianza);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((habitacion == null) ? 0 : habitacion.hashCode());
-		temp = Double.doubleToLongBits(precioMes);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof Anuncio) && this.getHabitacion().getID() == ((Anuncio) obj).getHabitacion().getID();
 	}
 
 //	public boolean isParking() {

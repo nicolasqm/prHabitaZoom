@@ -76,7 +76,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido añadir al usuario");
+			throw new Excepcion("no se ha podido aÃ±adir al usuario");
 		}
 	}
 	
@@ -154,7 +154,7 @@ public class AccesoBD {
 	}
 	
 	public void anadirHabitacion (Habitacion hab) throws Excepcion {
-        String insertBody = "INSERT INTO Habitacion (Direccion,Numero,Planta,Puerta,Descripcion,Tamaño,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
+        String insertBody = "INSERT INTO Habitacion (Direccion,Numero,Planta,Puerta,Descripcion,TamaÃ±o,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
@@ -189,7 +189,7 @@ public class AccesoBD {
             
 
         } catch (SQLException e) {
-            throw new Excepcion("fallo al añadir la habitacion");
+            throw new Excepcion("fallo al aÃ±adir la habitacion");
         }
 
     }
@@ -259,7 +259,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido añadir el anuncio");
+			throw new Excepcion("no se ha podido aÃ±adir el anuncio");
 		}
 	}
 	
@@ -432,28 +432,29 @@ public class AccesoBD {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new Excepcion("no se ha podido añadir el favorito");
+            throw new Excepcion("no se ha podido aÃ±adir el favorito");
         }
     }
 	
 	public double obtenerMediaHabitacion (Habitacion habitacion) throws Excepcion {
-		String selectBody = "SELECT AVG(Estrellas) FROM Valoracion WHERE Habitacion = ?";
-		double res = 0;
-		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(selectBody);
-			preparedStatement.setInt(1, habitacion.getID());
-			
-			ResultSet rs = preparedStatement.executeQuery();
-			
-			if (rs.next()) {
-				res = rs.getDouble(1);
-			}
-			
-			
-		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido obtener la media");
-		}
-		return res;
-	}
+        String selectBody = "SELECT AVG(Estrellas) FROM Valoracion WHERE Habitacion = ?";
+        Double res = null;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(selectBody);
+            preparedStatement.setInt(1, habitacion.getID());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                res = rs.getDouble(1);
+            }
+
+            if (res == null) res = 0.0;
+
+        } catch (SQLException e) {
+            throw new Excepcion("no se ha podido obtener la media");
+        }
+        return res;
+    }
 
 }

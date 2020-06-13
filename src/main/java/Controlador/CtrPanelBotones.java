@@ -3,8 +3,6 @@ package Controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Modelo.AccesoBD;
-import Modelo.Excepcion;
 import Modelo.Usuario;
 import Vista.Vista;
 
@@ -36,8 +34,8 @@ public class CtrPanelBotones implements ActionListener {
 			vista.getModificarPerfil().setVisible(false);
 			vista.getPublicarVista().setVisible(false);
 			vista.getMostrarPerfil().setVisible(false);
-			vista.getGeneral().setVisible(true);
 			vista.getVistaFavoritos().setVisible(false);
+			vista.getGeneral().setVisible(true);
 			vista.borrarErrorFiltrar();
 			vista.borrarErrorModificarPerfil();
 		} else if (comando.equals("Perfil")) {
@@ -66,13 +64,6 @@ public class CtrPanelBotones implements ActionListener {
 			vista.getVistaFavoritos().setVisible(true);
 			vista.borrarErrorFiltrar();
 			vista.borrarErrorModificarPerfil();
-			try {
-				vista.borrarTodosLosFavoritos();
-				vista.anadirListaFavoritos(AccesoBD.getInstance().getFavoritos(usuario));
-			} catch (Excepcion e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 
 	}

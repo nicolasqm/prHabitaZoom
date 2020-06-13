@@ -33,7 +33,7 @@ public class General extends JPanel {
 		filtros.setFont(new Font(Font.DIALOG, Font.BOLD, 17));
 		panelSecundario.add(filtros);
 
-		listaHabitaciones = new ListaHabitaciones();
+		listaHabitaciones = new ListaHabitaciones(false);
 		add(listaHabitaciones, BorderLayout.CENTER);
 
 		listaHabitaciones.setVisible(true);
@@ -48,9 +48,10 @@ public class General extends JPanel {
 		return listaHabitaciones;
 	}
 
-	public void setActionListeners(ActionListener l,ActionListener favoritos) {
+	public void setActionListeners(ActionListener l,ActionListener favoritos,ActionListener valoracion) {
 		filtros.addActionListener(l);
-		listaHabitaciones.setActionListeners(favoritos);
+		listaHabitaciones.setActionListeners(favoritos,valoracion);
+		
 	}
 
 }

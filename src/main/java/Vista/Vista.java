@@ -1,7 +1,6 @@
 package Vista;
 
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -12,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Modelo.Anuncio;
-import Modelo.Excepcion;
 import Modelo.Usuario;
 
 import java.awt.CardLayout;
@@ -29,6 +27,7 @@ public class Vista extends JFrame {
 	private PanelPrincipal PanelPrincipal;
 	private IniciarSesion IniciarSesion;
 	private EditarPerfil registrarse;
+	private HabitacionVista habvis;
 
 	public Vista() {
 		this.setTitle("HabitaZoom");
@@ -79,15 +78,15 @@ public class Vista extends JFrame {
 	}
 	
 	public VistaFavoritos getVistaFavoritos() {
-		return PanelPrincipal.getFavoritos();
+		return PanelPrincipal.getVistaFavoritos();
 	}
 
 	public void setActionListeners(ActionListener iniciarSesion, ActionListener registrarse,
 			ActionListener panelBotones, ActionListener publicar, ActionListener filtro, ActionListener general,
-			ActionListener mostrarPerfil, ActionListener modificarPerfil, ActionListener favoritos) {
+			ActionListener mostrarPerfil, ActionListener modificarPerfil, ActionListener favoritos ,ActionListener valoracion) {
 		IniciarSesion.setActionListeners(iniciarSesion);
 		this.registrarse.setActionListeners(registrarse);
-		PanelPrincipal.setActionListeners(panelBotones, publicar, filtro, general, mostrarPerfil, modificarPerfil,favoritos);
+		PanelPrincipal.setActionListeners(panelBotones, publicar, filtro, general, mostrarPerfil, modificarPerfil,favoritos,valoracion);
 	}
 
 	// ----------------------------------------------------
@@ -112,7 +111,7 @@ public class Vista extends JFrame {
 	public JLabel getErrorIniciarSesion() {
 		return IniciarSesion.getError();
 	}
-
+	
 	public void setMensajeErrorIniciarSesion(String txt) {
 		IniciarSesion.setMensajeError(txt);
 	}
@@ -128,38 +127,6 @@ public class Vista extends JFrame {
 	// ----------------------------------------------------------
 	// Aqui empeiza los botones y texto de registrarse
 	// --------------------------------------------------------
-	public JTextField getTextoNombre() {
-		return registrarse.getNombre();
-	}
-
-	public JTextField getTextoApellido() {
-		return registrarse.getApellido();
-	}
-
-	public JTextField getTextoApellido2() {
-		return registrarse.getApellido2();
-	}
-
-	public JTextField getTextoAlias() {
-		return registrarse.getAlias();
-	}
-
-	public JTextField getTextoCorreo() {
-		return registrarse.getCorreo();
-	}
-
-	public JTextField getTextoContrasena() {
-		return registrarse.getContrasena();
-	}
-
-	public JTextField getTextoConfirmarContrasena() {
-		return registrarse.getConfirmarContrasena();
-	}
-
-	public JTextField getTextoFechaNacimiento() {
-		return registrarse.getFechaNacimiento();
-	}
-
 	public JButton getBotonCancelar() {
 		return registrarse.getCancelar();
 	}
@@ -181,7 +148,7 @@ public class Vista extends JFrame {
 	}
 
 	public JButton getBotonFavoritos() {
-		return PanelPrincipal.getBotones().getFavoritos();
+		return PanelPrincipal.getBotones().getFavoritos ();
 	}
 
 	public JButton getBotonPerfil() {
@@ -193,22 +160,25 @@ public class Vista extends JFrame {
 	public JButton getBotonFiltrar() {
 		return PanelPrincipal.getGeneral().getBotonFiltro();
 	}
-
+	public Anuncio getAnuncioListaAnuncio() {
+		return getGeneral().getLista().buscarHabitacion();
+	}
+	
+	
+	public int getValoracion() {
+		return habvis.getValoracion();
+	}
+	public HabitacionVista getAnuncioValoracion() {
+		return PanelPrincipal.getGeneral().getLista().buscarValoracion();
+	}
+	public JLabel getErrorValoracion() {
+		return habvis.errorVal();
+	}
+	
 	// Tercero es el panel habitaciones que esta contenido en el general
 
 	public void anadirHabitacion(Anuncio anuncio) {
 		PanelPrincipal.getGeneral().getLista().anadirHabitacion(anuncio);
-	}
-	public Anuncio getAnuncioSeleccionado(Usuario usuario) throws Excepcion {
-		return PanelPrincipal.getGeneral().getLista().buscarAnuncioSeleccionado(usuario);
-	}
-	
-	public void activarBotonFavorito(Anuncio anuncio) {
-		PanelPrincipal.getGeneral().getLista().activarBotonFavorito(anuncio);
-	}
-	
-	public void quitarBotonesFavoritos(List<Anuncio> anuncios) {
-		PanelPrincipal.getGeneral().getLista().desactivarBotonesFavoritos(anuncios);
 	}
 
 	// ---------------------------------------------------------------------
@@ -299,6 +269,9 @@ public class Vista extends JFrame {
 	//
 	//
 	//
+//	public JPanel getvistaFiltro() {
+//		return PanelPrincipal.getVistaFiltro().getFiltro();
+//	}
 
 	public void setDatosModificarPerfil(Usuario u) {
 		PanelPrincipal.getModificarPerfil().setDatosUsuario(u);
@@ -370,24 +343,17 @@ public class Vista extends JFrame {
 
 	public void borrarErrorModificarPerfil() {
 		getModificarPerfil().getError().setText("");
-	} 
+	}
+	
 	//
-	//Favoritos
+	// Cosas necesarias para el favoritos
 	//
-	public void anadirUnAnuncioFavorito(Anuncio anuncio) {
-		PanelPrincipal.getFavoritos().getListaFavoritos().anadirHabitacion(anuncio);
+	public void anadirAnuncioFavorito(Anuncio anuncio) {
+		this.getVistaFavoritos().getListaFavoritos().anadirHabitacion(anuncio);
 	}
 	
-	public Anuncio getFavoritoSeleccinado(Usuario usuario) throws Excepcion {
-		return PanelPrincipal.getFavoritos().getListaFavoritos().buscarFavoritoSeleccionado(usuario);
-	}
 	
-	public void anadirListaFavoritos(List<Anuncio> anuncios) {
-		PanelPrincipal.getFavoritos().getListaFavoritos().anadirAnucios(anuncios);
-	}
 	
-	public void borrarTodosLosFavoritos() {
-		PanelPrincipal.getFavoritos().getListaFavoritos().borrarHabitacionesFavoritas();
-	}	
+	
 
 }

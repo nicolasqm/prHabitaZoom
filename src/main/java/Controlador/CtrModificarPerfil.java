@@ -9,9 +9,9 @@ import Modelo.Usuario;
 import Vista.Vista;
 
 public class CtrModificarPerfil implements ActionListener {
-	private Usuario usuario;
-	private Vista vista;
-	private AccesoBD bdd = AccesoBD.getInstance();
+	Usuario usuario;
+	Vista vista;
+	AccesoBD bdd = AccesoBD.getInstance();
 
 	public CtrModificarPerfil(Usuario u, Vista v) {
 		usuario = u;
