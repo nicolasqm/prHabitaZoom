@@ -8,8 +8,6 @@ import java.awt.GridLayout;
 import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
 
-import org.objenesis.instantiator.basic.NewInstanceInstantiator;
-
 import Modelo.Anuncio;
 
 @SuppressWarnings("serial")
@@ -44,9 +42,9 @@ public class VistaHabitacionFavoritos extends JPanel {
 		panel.setLayout(new BorderLayout());
 		planta = new JLabel("Planta: " + anuncio.getHabitacion().getPlanta());
 		planta.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-		panel.add(planta,BorderLayout.WEST);
+		panel.add(planta, BorderLayout.WEST);
 		quitarFavorito = new JToggleButton("Quitar");
-		panel.add(quitarFavorito,BorderLayout.EAST);
+		panel.add(quitarFavorito, BorderLayout.EAST);
 		distrito = new JLabel("Distrito: " + anuncio.getHabitacion().getDistrito().getNombre());
 		distrito.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		auxiliar.add(panel);
@@ -65,11 +63,11 @@ public class VistaHabitacionFavoritos extends JPanel {
 	public JSeparator getSeparator() {
 		return separator;
 	}
-	
+
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}
-	
+
 	public JToggleButton botonQuitar() {
 		return quitarFavorito;
 	}

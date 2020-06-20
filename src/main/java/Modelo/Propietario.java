@@ -20,20 +20,4 @@ public class Propietario extends Usuario {
 		AccesoBD accesoBD = AccesoBD.getInstance();
 		accesoBD.anadirHabitacion(habi);
 	}
-//	
-//	public boolean alquilar(Habitacion habitacion,Inquilino inquilino) {
-//		
-//		Habitacion aux = new Habitacion(hashCode());
-//		boolean res=false;
-//		
-//		if(aux.hashCode()!=habitacion.hashCode()) {
-//			habitacion.setActiva(true);
-//			habitacion.setInquilino(inquilino.hashCode());
-//			inquilino.setHabitacion(habitacion);
-//		}
-//		
-//		
-//		return res;
-//	}
-//	
 }

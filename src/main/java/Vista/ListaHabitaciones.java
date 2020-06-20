@@ -21,33 +21,25 @@ public class ListaHabitaciones extends JScrollPane {
 	private int filas;
 	private int nHabitaciones;
 	private JPanel panel;
-	private boolean favoritos;
-	private int sancho;
-	private int panza;
+	private ActionListener controladorFavorito;
+	private ActionListener controladorValoracion;
+	private int width;
+	private int height;
 
-	public ListaHabitaciones(boolean favoritos) {
+	public ListaHabitaciones() {
 		listaHabitacionVistas = new ArrayList<HabitacionVista>();
 		panel = new JPanel();
-		this.favoritos = favoritos;
+
 		filas = 6;
 		nHabitaciones = 0;
 		panel.setLayout(new GridLayout(filas, 0, 0, 0));
 		panel.setPreferredSize(this.getSize());
-		List<Anuncio> lista = null;
-		if(!favoritos) {
-			lista = AccesoBD.getInstance().getAnuncios();
-		}else {
-		//	lista = AccesoBD.getInstance().getAnuncios();
-			lista = new ArrayList<Anuncio>();
-		//	lista = AccesoBD.getInstance().getFavoritos(usuario);
-		}
+		List<Anuncio> lista = AccesoBD.getInstance().getAnuncios();
 		anadirListaAnuncios(lista);
 		this.setViewportView(panel);
-		
-		
 
-		sancho = panel.getWidth();
-		panza = panel.getHeight();
+		width = panel.getWidth();
+		height = panel.getHeight();
 	}
 
 	public ArrayList<HabitacionVista> getLista() {
@@ -55,7 +47,13 @@ public class ListaHabitaciones extends JScrollPane {
 	}
 
 	public void anadirHabitacion(Anuncio anuncio) {
-		HabitacionVista h = new HabitacionVista(anuncio,favoritos);
+		HabitacionVista h = new HabitacionVista(anuncio);
+		if (controladorFavorito != null) {
+			h.getBotonFavorito().addActionListener(controladorFavorito);
+		}
+		if (controladorValoracion != null) {
+			h.getEnviar().addActionListener(controladorValoracion);
+		}
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
 		if (nHabitaciones == filas + 1) {
@@ -71,8 +69,8 @@ public class ListaHabitaciones extends JScrollPane {
 	}
 
 	public void borrarTodasLasHabitaciones() {
-		panel.setSize(new Dimension(sancho,panza));
-		panel.setLayout(new GridLayout(6,0,0,0));
+		panel.setSize(new Dimension(width, height));
+		panel.setLayout(new GridLayout(6, 0, 0, 0));
 		panel.removeAll();
 		listaHabitacionVistas.clear();
 		nHabitaciones = 0;
@@ -84,46 +82,63 @@ public class ListaHabitaciones extends JScrollPane {
 			anadirHabitacion(lista.get(pos));
 		}
 	}
-	
-	public Anuncio buscarHabitacion() {
+
+	public Anuncio buscarAnuncioSeleccionado(Usuario usuario) throws Excepcion {
+		List<Anuncio> anunciosYaFavoritos = AccesoBD.getInstance().getFavoritos(usuario);
 		int pos = 0;
-		boolean parar = false;
-		while(!parar) {
-			if(listaHabitacionVistas.get(pos).getBotonFavoritos().isSelected()) {
-				if(listaHabitacionVistas.get(pos).estaEnFavoritos()) {
-					pos++;
-				}else {
-					parar = true;
-				}
-			}else {
+		Anuncio anuncio = null;
+		HabitacionVista auxiiar = null;
+		while (pos < listaHabitacionVistas.size() && anuncio == null) {
+			auxiiar = listaHabitacionVistas.get(pos);
+			if (auxiiar.getBotonFavorito().isSelected() && !anunciosYaFavoritos.contains(auxiiar.getAnuncio())) {
+				anuncio = auxiiar.getAnuncio();
+				auxiiar.getBotonFavorito().setVisible(false);
+				auxiiar.getBotonFavorito().setSelected(false);
+			} else {
 				pos++;
 			}
+
 		}
-		listaHabitacionVistas.get(pos).setFavoritos(true);
-		listaHabitacionVistas.get(pos).getBotonFavoritos().setSelected(false);
-		listaHabitacionVistas.get(pos).getBotonFavoritos().setVisible(false);
-		return listaHabitacionVistas.get(pos).getAnuncio();
+		return anuncio;
 	}
-	
-	public void setActionListeners(ActionListener favoritos,ActionListener valoracion) {
+
+	public void setActionListeners(ActionListener l, ActionListener v) {
+		controladorFavorito = l;
+		controladorValoracion = v;
 		for (int pos = 0; pos < listaHabitacionVistas.size(); pos++) {
-			listaHabitacionVistas.get(pos).setActionListeners(favoritos,valoracion);
-			
+			listaHabitacionVistas.get(pos).setActionListeners(l, v);
 		}
 	}
-	
-	public HabitacionVista buscarValoracion () {
-		int i=0;
-		boolean p=false;
-		while(i<listaHabitacionVistas.size() && (!p)) {
-			if(listaHabitacionVistas.get(i).getEnviar().isSelected()) {
+
+	public void desactivarBotonesFavoritos(List<Anuncio> anuciosFavoritos) {
+		for (int pos = 0; pos < listaHabitacionVistas.size(); pos++) {
+			if (anuciosFavoritos.contains(listaHabitacionVistas.get(pos).getAnuncio())) {
+				listaHabitacionVistas.get(pos).getBotonFavorito().setSelected(false);
+				listaHabitacionVistas.get(pos).getBotonFavorito().setVisible(false);
+			}
+		}
+	}
+
+	public void activarBotonFavorito(Anuncio anuncio) {
+		int pos = 0;
+		while (pos < listaHabitacionVistas.size() && !anuncio.equals(listaHabitacionVistas.get(pos).getAnuncio())) {
+			pos++;
+		}
+		listaHabitacionVistas.get(pos).getBotonFavorito().setVisible(true);
+	}
+
+	public HabitacionVista buscarValoracion() {
+		int i = 0;
+		boolean p = false;
+		while (i < listaHabitacionVistas.size() && (!p)) {
+			if (listaHabitacionVistas.get(i).getEnviar().isSelected()) {
 				listaHabitacionVistas.get(i).getEnviar().setSelected(false);
-				p=true;
+				p = true;
 			}
 			i++;
 		}
-		
-		return listaHabitacionVistas.get(i-1);
+
+		return listaHabitacionVistas.get(i - 1);
 	}
 
 }

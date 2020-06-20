@@ -10,17 +10,15 @@ import Modelo.AccesoBD;
 import Modelo.Anuncio;
 import Modelo.Distrito;
 import Modelo.Excepcion;
-import Vista.General;
+import Modelo.Usuario;
 import Vista.Vista;
-import Vista.VistaFiltro;
 
 public class CtrFiltro implements ActionListener {
+	private Usuario usuario;
+	private Vista vista;
 
-	Vista vista;
-	General general;
-	VistaFiltro filtro;
-
-	public CtrFiltro(Vista v) {
+	public CtrFiltro(Usuario u, Vista v) {
+		usuario = u;
 		vista = v;
 	}
 
@@ -28,14 +26,12 @@ public class CtrFiltro implements ActionListener {
 		String comando = e.getActionCommand();
 
 		if (comando.equals("Cancelar")) {
-
 			vista.getVistaFiltro().getError().setText("");
 			vista.getVistaFiltro().setVisible(false);
 			vista.getGeneral().setVisible(true);
 			vista.getPublicarVista().setVisible(false);
 			vista.getMostrarPerfil().setVisible(false);
 		} else if (comando.equals("Buscar")) {
-			// hacer procedimiento
 			try {
 				AccesoBD accesobd = AccesoBD.getInstance();
 
@@ -78,6 +74,8 @@ public class CtrFiltro implements ActionListener {
 				vista.getGeneral().setVisible(true);
 				vista.getPublicarVista().setVisible(false);
 				vista.getMostrarPerfil().setVisible(false);
+
+				vista.quitarBotonesFavoritos(AccesoBD.getInstance().getFavoritos(usuario));
 
 			} catch (NumberFormatException et) {
 				vista.setErrorFiltrar("formato no valido");

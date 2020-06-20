@@ -16,9 +16,6 @@ import java.awt.GridLayout;
 
 public class VistaFiltro extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Filtro;
 	private JButton Buscar;

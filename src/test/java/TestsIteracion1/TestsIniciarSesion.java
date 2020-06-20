@@ -13,14 +13,13 @@ import Vista.Vista;
 class TestsIniciarSesion {
 	private Vista v;
 	private Usuario u;
-	private Controlador c;
 
 	@BeforeEach
 	void init() {
 		v = new Vista();
 		u = new Usuario("", "", "", "", "", "");
 
-		c = new Controlador(u, v);
+		new Controlador(u, v);
 	}
 
 	@Test

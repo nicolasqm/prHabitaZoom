@@ -12,7 +12,7 @@ import javax.swing.JButton;
 public class PanelBotones extends JPanel {
 
 	private JButton general;
-	private JButton calendario;
+	private JButton solicitudes;
 	private JButton publicar;
 	private JButton favoritos;
 	private JButton perfil;
@@ -24,9 +24,9 @@ public class PanelBotones extends JPanel {
 		general.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 		add(general);
 
-		calendario = new JButton("Calendario");
-		calendario.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
-		add(calendario);
+		solicitudes = new JButton("Solicitudes");
+		solicitudes.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
+		add(solicitudes);
 
 		publicar = new JButton("Publicar");
 		publicar.setFont(new Font(Font.DIALOG, Font.BOLD, 19));
@@ -46,8 +46,8 @@ public class PanelBotones extends JPanel {
 		return general;
 	}
 
-	public JButton getCalendario() {
-		return calendario;
+	public JButton getSolicitudes() {
+		return solicitudes;
 	}
 
 	public JButton getPublicar() {
@@ -64,7 +64,7 @@ public class PanelBotones extends JPanel {
 
 	public void setActionListeners(ActionListener l) {
 		general.addActionListener(l);
-		calendario.addActionListener(l);
+		solicitudes.addActionListener(l);
 		publicar.addActionListener(l);
 		favoritos.addActionListener(l);
 		perfil.addActionListener(l);

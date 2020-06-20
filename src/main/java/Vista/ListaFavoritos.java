@@ -20,8 +20,8 @@ public class ListaFavoritos extends JScrollPane {
 	private int filas;
 	private int nHabitaciones;
 	private JPanel panel;
-	private ActionListener controlador;
-	
+	private ActionListener controladorFavorito;
+
 	public ListaFavoritos() {
 		listaHabitacionVistas = new ArrayList<>();
 		panel = new JPanel();
@@ -40,7 +40,7 @@ public class ListaFavoritos extends JScrollPane {
 
 	public void anadirHabitacion(Anuncio anuncio) {
 		VistaHabitacionFavoritos h = new VistaHabitacionFavoritos(anuncio);
-		h.botonQuitar().addActionListener(controlador);
+		h.botonQuitar().addActionListener(controladorFavorito);
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
 		if (nHabitaciones == filas + 1) {
@@ -54,47 +54,46 @@ public class ListaFavoritos extends JScrollPane {
 		}
 		panel.add(h);
 	}
-	
+
 	public void anadirAnucios(List<Anuncio> anuncios) {
-		for(int pos = 0; pos<anuncios.size(); pos++) {
+		for (int pos = 0; pos < anuncios.size(); pos++) {
 			anadirHabitacion(anuncios.get(pos));
 		}
 	}
-	
+
 	public Anuncio buscarFavoritoSeleccionado(Usuario usuario) throws Excepcion {
 		int pos = 0;
 		Anuncio anuncio = null;
 		VistaHabitacionFavoritos auxiiar = null;
-		while(pos<listaHabitacionVistas.size() && anuncio == null) {
+		while (pos < listaHabitacionVistas.size() && anuncio == null) {
 			auxiiar = listaHabitacionVistas.get(pos);
-			if(auxiiar.botonQuitar().isSelected()) {
+			if (auxiiar.botonQuitar().isSelected()) {
 				anuncio = auxiiar.getAnuncio();
 				auxiiar.setVisible(false);
 				borrarAnuncioFavorito(auxiiar);
-			}else {
+			} else {
 				pos++;
-			}	
-			
-		}		
+			}
+
+		}
 		return anuncio;
 	}
-	
+
 	public void borrarAnuncioFavorito(VistaHabitacionFavoritos v) {
 		panel.remove(v);
 		nHabitaciones--;
 		listaHabitacionVistas.remove(v);
 	}
-	
+
 	public void borrarHabitacionesFavoritas() {
 		panel.removeAll();
 		listaHabitacionVistas.clear();
 		nHabitaciones = 0;
 		filas = 6;
 	}
-	
-	
-	public void setActionListeners(ActionListener l) {
-		controlador = l;
+
+	public void setActionListeners(ActionListener favorito) {
+		controladorFavorito = favorito;
 	}
 
 }

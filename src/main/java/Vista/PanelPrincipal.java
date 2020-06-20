@@ -17,6 +17,8 @@ public class PanelPrincipal extends JPanel {
 	private EditarPerfil modificarPerfil;
 	private VistaFiltro vistaFiltro;
 	private VistaFavoritos vistaFavoritos;
+	private SolicitudesVista vistaSolicitudes;
+
 	public PanelPrincipal() {
 		setLayout(new BorderLayout(0, 0));
 		panelBotones = new PanelBotones();
@@ -30,17 +32,17 @@ public class PanelPrincipal extends JPanel {
 		vistaFavoritos = new VistaFavoritos();
 		vistaFiltro = new VistaFiltro();
 		mp = new MostrarPerfil();
+		vistaSolicitudes = new SolicitudesVista();
 		seleccionPanel.add(general);
 		seleccionPanel.add(publicarVista);
 		seleccionPanel.add(mp);
 		seleccionPanel.add(modificarPerfil);
 		seleccionPanel.add(vistaFiltro);
 		seleccionPanel.add(vistaFavoritos);
+		seleccionPanel.add(vistaSolicitudes);
 		add(seleccionPanel, BorderLayout.CENTER);
 
 	}
-	
-	
 
 	public MostrarPerfil getMostrarPerfil() {
 		return mp;
@@ -65,20 +67,26 @@ public class PanelPrincipal extends JPanel {
 	public VistaFiltro getVistaFiltro() {
 		return vistaFiltro;
 	}
-	
+
 	public VistaFavoritos getVistaFavoritos() {
 		return vistaFavoritos;
 	}
 
-	
+	public SolicitudesVista getSolicitudesVista() {
+		return vistaSolicitudes;
+	}
+
 	public void setActionListeners(ActionListener panelBotones, ActionListener publicar, ActionListener filtro,
-			ActionListener general, ActionListener mostrarPefil, ActionListener modificarPefil,ActionListener favoritos, ActionListener valoracion) {
-		this.general.setActionListeners(general,favoritos,valoracion);
+			ActionListener general, ActionListener mostrarPefil, ActionListener modificarPefil,
+			ActionListener favoritos, ActionListener valoracion, ActionListener solicitudes) {
+		this.general.setActionListeners(general, favoritos, valoracion);
 		this.panelBotones.setActionListeners(panelBotones);
 		publicarVista.setActionListeners(publicar);
 		vistaFiltro.setActionListeners(filtro);
 		mp.setActionListeners(mostrarPefil);
 		this.modificarPerfil.setActionListeners(modificarPefil);
+		vistaFavoritos.setActionListeners(favoritos);
+		vistaSolicitudes.setActionListeners(solicitudes);
 	}
 
 }

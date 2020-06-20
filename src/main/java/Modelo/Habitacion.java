@@ -221,29 +221,7 @@ public class Habitacion {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Habitacion other = (Habitacion) obj;
-		if (direccion == null) {
-			if (other.direccion != null)
-				return false;
-		} else if (!direccion.equals(other.direccion))
-			return false;
-		if (numero != other.numero)
-			return false;
-		if (planta != other.planta)
-			return false;
-		if (!propietario.equals(other.propietario))
-			return false;
-		if (!puerta.equals(other.puerta))
-			return false;
-		if (!distrito.equals(other.distrito))
-			return false;
-		return true;
+		return (obj instanceof Habitacion) && this.getID() == ((Habitacion) obj).getID();
 	}
 
 }

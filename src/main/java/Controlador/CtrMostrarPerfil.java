@@ -4,13 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Modelo.Usuario;
-import Vista.EditarPerfil;
 import Vista.Vista;
 
 public class CtrMostrarPerfil implements ActionListener {
-	Usuario usuario;
-	Vista vista;
-	EditarPerfil editarPerfil;
+	private Usuario usuario;
+	private Vista vista;
 
 	public CtrMostrarPerfil(Usuario u, Vista v) {
 		usuario = u;

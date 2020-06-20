@@ -4,8 +4,8 @@ import Modelo.Usuario;
 import Vista.Vista;
 
 public class Controlador {
-	private Usuario usuario;
 	private Vista vista;
+	private Usuario usuario;
 	private CtrInicioSesion inicioSesion;
 	private CtrRegistrarse registrarse;
 	private CtrPanelBotones panelBotones;
@@ -16,24 +16,26 @@ public class Controlador {
 	private CtrModificarPerfil modificarPerfil;
 	private CtrFavoritos favoritos;
 	private CtrValoraciones valoraciones;
+	private CtrSolicitudes solicitudes;
 
 	public Controlador(Usuario u, Vista v) {
 		usuario = u;
 		vista = v;
 
 		inicioSesion = new CtrInicioSesion(usuario, vista);
-		registrarse = new CtrRegistrarse(usuario, vista);
+		registrarse = new CtrRegistrarse(vista);
 		panelBotones = new CtrPanelBotones(usuario, vista);
 		publicar = new CtrPublicar(usuario, vista);
-		filtro = new CtrFiltro(vista);
+		filtro = new CtrFiltro(usuario, vista);
 		general = new CtrGeneral(vista);
 		mostrarPerfil = new CtrMostrarPerfil(usuario, vista);
 		modificarPerfil = new CtrModificarPerfil(usuario, vista);
-		favoritos = new CtrFavoritos(vista, usuario);
-		valoraciones =  new CtrValoraciones(vista , usuario);
+		favoritos = new CtrFavoritos(usuario, vista);
+		valoraciones =  new CtrValoraciones(usuario, vista);
+		solicitudes = new CtrSolicitudes(vista);
 
 		vista.setActionListeners(inicioSesion, registrarse, panelBotones, publicar, filtro, general, mostrarPerfil,
-				modificarPerfil, favoritos, valoraciones);
+				modificarPerfil, favoritos, valoraciones, solicitudes);
 	}
 
 }
