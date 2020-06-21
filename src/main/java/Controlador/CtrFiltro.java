@@ -22,6 +22,7 @@ public class CtrFiltro implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 

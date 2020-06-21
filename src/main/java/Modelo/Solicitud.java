@@ -9,7 +9,8 @@ public class Solicitud {
 	private Usuario solicitante;
 	private Anuncio anuncioSolicitado;
 
-	public Solicitud(String fechaSolicitud, String fechaInicioAlq, String fechaFinAlq, boolean estadoSolicitud, Usuario solicitante, Anuncio anuncioSolicitado) {
+	public Solicitud(String fechaSolicitud, String fechaInicioAlq, String fechaFinAlq, boolean estadoSolicitud,
+			Usuario solicitante, Anuncio anuncioSolicitado) {
 		this.estadoSolicitud = estadoSolicitud;
 		this.fechaFinAlq = fechaFinAlq;
 		this.fechaInicioAlq = fechaInicioAlq;
@@ -49,11 +50,11 @@ public class Solicitud {
 	public void setEstadoSolicitud(boolean estadoSolicitud) {
 		this.estadoSolicitud = estadoSolicitud;
 	}
-	
+
 	public Usuario getSolicitante() {
 		return solicitante;
 	}
-	
+
 	public void setSolicitante(Usuario solicitante) {
 		this.solicitante = solicitante;
 	}
@@ -61,7 +62,7 @@ public class Solicitud {
 	public Anuncio getAnuncioSolicitado() {
 		return anuncioSolicitado;
 	}
-	
+
 	public void setAnuncioSolicitado(Anuncio anuncioSolicitado) {
 		this.anuncioSolicitado = anuncioSolicitado;
 	}

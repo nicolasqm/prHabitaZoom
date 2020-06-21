@@ -12,6 +12,7 @@ public class CtrSolicitudes implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		if (comando.equals("Aceptar")) {

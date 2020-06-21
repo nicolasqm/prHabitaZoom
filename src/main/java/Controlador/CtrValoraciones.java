@@ -17,6 +17,7 @@ public class CtrValoraciones implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		HabitacionVista hab = vista.getAnuncioValoracion();

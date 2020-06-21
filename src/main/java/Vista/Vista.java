@@ -127,7 +127,7 @@ public class Vista extends JFrame {
 	public void borrarTextFieldsInicioSesion() {
 		IniciarSesion.borra();
 	}
-	
+
 	public void anadirListaAnuncio(List<Anuncio> lista) {
 		PanelPrincipal.getGeneral().getLista().anadirListaAnuncios(lista);
 	}
@@ -171,12 +171,10 @@ public class Vista extends JFrame {
 	public JButton getBotonCancelar() {
 		return registrarse.getCancelar();
 	}
-	
-	
 
-	// ---------------------------------------------------
-	// Aqui empieza los botones y texto de panel principal
-	// ---------------------------------------------------
+	// --------------------------------------------------
+	// Aqui empieza los botones y texto de PanelPrincipal
+	// --------------------------------------------------
 
 	// PanelBotones
 
@@ -209,11 +207,10 @@ public class Vista extends JFrame {
 	public HabitacionVista getAnuncioValoracion() {
 		return PanelPrincipal.getGeneral().getLista().buscarValoracion();
 	}
-	
+
 	public HabitacionVista getAnuncioSolicitud() {
 		return PanelPrincipal.getGeneral().getLista().buscarHabitacionSolicitada();
 	}
-	
 
 	// ListaHabitaciones
 
@@ -305,9 +302,9 @@ public class Vista extends JFrame {
 		return PanelPrincipal.getPublicarVista().getprecioMes();
 	}
 
-	// ---------------------------------
+	// ----------------------------------
 	// Getters y setters de MostrarPerfil
-	// ---------------------------------
+	// ----------------------------------
 
 	public void setUsuarioMostrarPerfil(Usuario u) {
 		PanelPrincipal.getMostrarPerfil().setUsuario(u);
@@ -316,38 +313,38 @@ public class Vista extends JFrame {
 	public void setDatosModificarPerfil(Usuario u) {
 		PanelPrincipal.getModificarPerfil().setDatosUsuario(u);
 	}
-	
+
 	public JTextField getTextoNombreMod() {
-        return PanelPrincipal.getModificarPerfil().getNombre();
-    }
+		return PanelPrincipal.getModificarPerfil().getNombre();
+	}
 
-    public JTextField getTextoApellidoMod() {
-        return PanelPrincipal.getModificarPerfil().getApellido();
-    }
+	public JTextField getTextoApellidoMod() {
+		return PanelPrincipal.getModificarPerfil().getApellido();
+	}
 
-    public JTextField getTextoApellido2Mod() {
-        return PanelPrincipal.getModificarPerfil().getApellido2();
-    }
+	public JTextField getTextoApellido2Mod() {
+		return PanelPrincipal.getModificarPerfil().getApellido2();
+	}
 
-    public JTextField getTextoAliasMod() {
-        return PanelPrincipal.getModificarPerfil().getAlias();
-    }
+	public JTextField getTextoAliasMod() {
+		return PanelPrincipal.getModificarPerfil().getAlias();
+	}
 
-    public JTextField getTextoCorreoMod() {
-        return PanelPrincipal.getModificarPerfil().getCorreo();
-    }
+	public JTextField getTextoCorreoMod() {
+		return PanelPrincipal.getModificarPerfil().getCorreo();
+	}
 
-    public JTextField getTextoContrasenaMod() {
-        return PanelPrincipal.getModificarPerfil().getContrasena();
-    }
+	public JTextField getTextoContrasenaMod() {
+		return PanelPrincipal.getModificarPerfil().getContrasena();
+	}
 
-    public JTextField getTextoConfirmarContrasenaMod() {
-        return PanelPrincipal.getModificarPerfil().getConfirmarContrasena();
-    }
+	public JTextField getTextoConfirmarContrasenaMod() {
+		return PanelPrincipal.getModificarPerfil().getConfirmarContrasena();
+	}
 
-    public JTextField getTextoFechaNacimientoMod() {
-        return PanelPrincipal.getModificarPerfil().getFechaNacimiento();
-    }
+	public JTextField getTextoFechaNacimientoMod() {
+		return PanelPrincipal.getModificarPerfil().getFechaNacimiento();
+	}
 
 	// ----------------------------
 	// Getters y setters de Filtrar
@@ -440,41 +437,41 @@ public class Vista extends JFrame {
 	public void activarBotonFavorito(Anuncio anuncio) {
 		PanelPrincipal.getGeneral().getLista().activarBotonFavorito(anuncio);
 	}
-	
+
 	public void borrarTodasLasHabitaciones() {
 		this.getGeneral().getLista().borrarTodasLasHabitaciones();
 	}
-	
+
 	public void resetearFiltro() {
-        getVistaFiltro().getError().setText("");
-        getPanelPrincipal().getVistaFiltro().getDistrito().setSelectedItem(null);
-        getPrecioMin().setText("");
-        getPrecioMax().setText("");
-        getParking().setSelected(false);
-        getTerraza().setSelected(false);
-        getWifi().setSelected(false);
-        getFumador().setSelected(false);
-        getMascota().setSelected(false);
-        getSoloEstudiantes().setSelected(false);
-        getGastosIncluidos().setSelected(false);
-    }
-	
-	// ----------------------
-	// Métodos para Favoritos
-	// ----------------------
-	
+		getVistaFiltro().getError().setText("");
+		getPanelPrincipal().getVistaFiltro().getDistrito().setSelectedItem(null);
+		getPrecioMin().setText("");
+		getPrecioMax().setText("");
+		getParking().setSelected(false);
+		getTerraza().setSelected(false);
+		getWifi().setSelected(false);
+		getFumador().setSelected(false);
+		getMascota().setSelected(false);
+		getSoloEstudiantes().setSelected(false);
+		getGastosIncluidos().setSelected(false);
+	}
+
+	// ------------------------
+	// Métodos para Solicitudes
+	// ------------------------
+
 	public void anadirListaSolicitudes(List<Solicitud> solicitudes) {
 		PanelPrincipal.getSolicitudesVista().getListaSolicitudes().anadirSolicitudes(solicitudes);
 	}
-	
+
 	public void borrarTodosLasSolicitudes() {
 		PanelPrincipal.getSolicitudesVista().getListaSolicitudes().borrarListaSolicitudes();
-	} 
-	
+	}
+
 	public void buscarBotonAceptarSolicitud() {
 		this.getSolicitudesVista().getListaSolicitudes().buscarBotonAceptar();
 	}
-	
+
 	public void buscarBotonCancelarSolicitud() {
 		this.getSolicitudesVista().getListaSolicitudes().buscarBotonCancelar();
 	}

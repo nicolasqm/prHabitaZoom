@@ -22,6 +22,7 @@ public class CtrPublicar implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 		if (action.equals("Aceptar")) {

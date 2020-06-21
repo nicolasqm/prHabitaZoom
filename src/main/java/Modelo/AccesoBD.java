@@ -469,29 +469,30 @@ public class AccesoBD {
 	}
 
 	public void enviarSolicitud(Solicitud sol) throws Excepcion {
-        String insertBody = "INSERT INTO Solicitud (Fecha_Solicitud,Fecha_Inicio_Alquiler,Fecha_Fin_Alquiler,Estado_Solicitud,Solicitante,Anuncio_Solicitado)" + " values (?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(insertBody);
+		String insertBody = "INSERT INTO Solicitud (Fecha_Solicitud,Fecha_Inicio_Alquiler,Fecha_Fin_Alquiler,Estado_Solicitud,Solicitante,Anuncio_Solicitado)"
+				+ " values (?,?,?,?,?,?)";
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(insertBody);
 
-            DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            LocalDateTime now = LocalDateTime.now();
-            preparedStatement.setString(1, dt.format(now));
-            preparedStatement.setString(2, sol.getFechaInicioAlq());
-            preparedStatement.setString(3, sol.getFechaFinAlq());
-            preparedStatement.setBoolean(4, false);
-            preparedStatement.setString(5, sol.getSolicitante().getCorreo());
-            preparedStatement.setInt(6, sol.getAnuncioSolicitado().getHabitacion().getID());
+			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			LocalDateTime now = LocalDateTime.now();
+			preparedStatement.setString(1, dt.format(now));
+			preparedStatement.setString(2, sol.getFechaInicioAlq());
+			preparedStatement.setString(3, sol.getFechaFinAlq());
+			preparedStatement.setBoolean(4, false);
+			preparedStatement.setString(5, sol.getSolicitante().getCorreo());
+			preparedStatement.setInt(6, sol.getAnuncioSolicitado().getHabitacion().getID());
 
-            preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            throw new Excepcion("Fechas no validas");
-        }
-    }
+		} catch (SQLException e) {
+			throw new Excepcion("Fechas no validas");
+		}
+	}
 
 	public List<Solicitud> getSolicitudes(Usuario u) throws Excepcion {
-		//TODO: Probar que funcionen las solicitudes (tengo dudas de la consulta)
-		String selectQueryBody = "SELECT * " + "FROM Solicitud as S join Anuncio as A on (S.Anuncio_Solicitado = A.idAnuncio) "
+		String selectQueryBody = "SELECT * "
+				+ "FROM Solicitud as S join Anuncio as A on (S.Anuncio_Solicitado = A.idAnuncio) "
 				+ "join Habitacion as H on (H.idHabitacion = A.idAnuncio) " + "WHERE H.Propietario = ?";
 
 		List<Solicitud> res = new ArrayList<>();
@@ -506,7 +507,7 @@ public class AccesoBD {
 			Habitacion habitacion;
 			Anuncio anuncio;
 			Solicitud solicitud;
-			
+
 			while (rs.next()) {
 				propietario = new Propietario(buscarUsuario(rs.getString(5)));
 				distrito = buscarDistrito(rs.getString(26));
@@ -515,7 +516,8 @@ public class AccesoBD {
 						rs.getBoolean(20), rs.getBoolean(21), rs.getBoolean(22), rs.getBoolean(23), rs.getBoolean(24),
 						true, propietario, distrito);
 				anuncio = new Anuncio(rs.getDouble(8), rs.getDouble(9), habitacion);
-				solicitud = new Solicitud(rs.getString(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), propietario, anuncio);
+				solicitud = new Solicitud(rs.getString(1), rs.getString(2), rs.getString(3), rs.getBoolean(4),
+						propietario, anuncio);
 				res.add(solicitud);
 			}
 

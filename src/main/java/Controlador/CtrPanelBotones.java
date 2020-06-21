@@ -17,6 +17,7 @@ public class CtrPanelBotones implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String comando = arg0.getActionCommand();
 		if (comando.equals("Publicar")) {
@@ -74,7 +75,6 @@ public class CtrPanelBotones implements ActionListener {
 				vista.borrarTodosLosFavoritos();
 				vista.anadirListaFavoritos(AccesoBD.getInstance().getFavoritos(usuario));
 			} catch (Excepcion e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (comando.equals("Solicitudes")) {
@@ -94,7 +94,6 @@ public class CtrPanelBotones implements ActionListener {
 				vista.borrarTodosLasSolicitudes();
 				vista.anadirListaSolicitudes(AccesoBD.getInstance().getSolicitudes(usuario));
 			} catch (Excepcion e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

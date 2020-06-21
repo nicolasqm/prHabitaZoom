@@ -86,7 +86,7 @@ public class HabitacionVista extends JPanel {
 		valoracion = new JLabel("Valoración:");
 		valoracion.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		panel.add(valoracion);
-		
+
 		solicitar = new JToggleButton("Solicitar");
 		textIniAlq = new JLabel("Fecha inicio alquiler");
 		iniAlq = new JTextField();
@@ -118,7 +118,7 @@ public class HabitacionVista extends JPanel {
 		errorvalorado = new JLabel();
 		errorvalorado.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		panel.add(errorvalorado);
-		
+
 		panel.add(solicitar);
 		panel.add(textIniAlq);
 		panel.add(iniAlq);
@@ -154,15 +154,15 @@ public class HabitacionVista extends JPanel {
 	public JToggleButton getBotonFavorito() {
 		return favorito;
 	}
-	
+
 	public JPanel getPanelValoracion() {
 		return panel;
 	}
-	
+
 	public JToggleButton getSolicitar() {
 		return solicitar;
 	}
-	
+
 	public JTextField getIniAlq() {
 		return iniAlq;
 	}
@@ -170,10 +170,11 @@ public class HabitacionVista extends JPanel {
 	public JTextField getFinAlq() {
 		return finAlq;
 	}
-	
+
 	public JLabel gettextIniAlq() {
 		return textIniAlq;
 	}
+
 	public JLabel gettextFinAlq() {
 		return textFinAlq;
 	}

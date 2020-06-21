@@ -27,7 +27,6 @@ public class CtrFavoritos implements ActionListener {
 				AccesoBD.getInstance().anadirFavorito(usuario, anuncio);
 				vista.anadirAnuncioFavorito(anuncio);
 			} catch (Excepcion e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("Quitar")) {
@@ -36,7 +35,6 @@ public class CtrFavoritos implements ActionListener {
 				AccesoBD.getInstance().eliminarFavorito(usuario, anuncio);
 				vista.activarBotonFavorito(anuncio);
 			} catch (Excepcion e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

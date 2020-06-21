@@ -48,7 +48,8 @@ public class General extends JPanel {
 		return listaHabitaciones;
 	}
 
-	public void setActionListeners(ActionListener l, ActionListener favoritos, ActionListener valoracion, ActionListener solicitud) {
+	public void setActionListeners(ActionListener l, ActionListener favoritos, ActionListener valoracion,
+			ActionListener solicitud) {
 		filtros.addActionListener(l);
 		listaHabitaciones.setActionListeners(favoritos, valoracion, solicitud);
 

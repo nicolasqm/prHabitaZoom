@@ -32,7 +32,7 @@ public class Controlador {
 		mostrarPerfil = new CtrMostrarPerfil(usuario, vista);
 		modificarPerfil = new CtrModificarPerfil(usuario, vista);
 		favoritos = new CtrFavoritos(usuario, vista);
-		valoraciones =  new CtrValoraciones(usuario, vista);
+		valoraciones = new CtrValoraciones(usuario, vista);
 		solicitudes = new CtrSolicitudes(vista);
 		solicitar = new CtrSolicitar(usuario, vista);
 

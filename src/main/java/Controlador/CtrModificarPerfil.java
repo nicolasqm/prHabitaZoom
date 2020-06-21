@@ -18,6 +18,7 @@ public class CtrModificarPerfil implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
 
@@ -27,8 +28,11 @@ public class CtrModificarPerfil implements ActionListener {
 					usuario.getDescripcion());
 			try {
 				if (!vista.getTextoAliasMod().getText().equals("") && !vista.getTextoApellidoMod().getText().equals("")
-						&& !vista.getTextoApellido2Mod().getText().equals("") && !vista.getTextoNombreMod().getText().equals("") && !vista.getTextoContrasenaMod().getText().equals("")) {
-					if (vista.getTextoConfirmarContrasenaMod().getText().equals(vista.getTextoContrasenaMod().getText())) {
+						&& !vista.getTextoApellido2Mod().getText().equals("")
+						&& !vista.getTextoNombreMod().getText().equals("")
+						&& !vista.getTextoContrasenaMod().getText().equals("")) {
+					if (vista.getTextoConfirmarContrasenaMod().getText()
+							.equals(vista.getTextoContrasenaMod().getText())) {
 						usuario.setAlias(vista.getTextoAliasMod().getText());
 						usuario.setApellido(
 								vista.getTextoApellidoMod().getText() + " " + vista.getTextoApellido2Mod().getText());
@@ -48,7 +52,7 @@ public class CtrModificarPerfil implements ActionListener {
 				} else {
 					throw new Excepcion("faltan datos");
 				}
-                
+
 			} catch (Excepcion ex1) {
 				vista.getModificarPerfil().getError().setText(ex1.getMessage());
 				usuario.setNombre(aux.getNombre());

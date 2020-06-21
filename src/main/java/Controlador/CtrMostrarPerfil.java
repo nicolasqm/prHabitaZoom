@@ -15,6 +15,7 @@ public class CtrMostrarPerfil implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 

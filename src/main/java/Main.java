@@ -11,7 +11,6 @@ public class Main {
 		Controlador controlador = new Controlador(usuario, vista);
 
 		vista.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//vista.setUndecorated(true);
 		vista.setVisible(true);
 	}
 }

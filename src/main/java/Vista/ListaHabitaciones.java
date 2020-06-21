@@ -52,7 +52,7 @@ public class ListaHabitaciones extends JScrollPane {
 		h.getSolicitar().addActionListener(controladorSolicitud);
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
-		if (nHabitaciones > filas ) {
+		if (nHabitaciones > filas) {
 			panel.setLayout(new GridLayout(nHabitaciones, 0, 0, 0));
 			Dimension dim = panel.getSize();
 			panel.setPreferredSize(new Dimension(dim.width, dim.height + 400));
@@ -133,7 +133,7 @@ public class ListaHabitaciones extends JScrollPane {
 
 		return listaHabitacionVistas.get(i - 1);
 	}
-	
+
 	public HabitacionVista buscarHabitacionSolicitada() {
 		int i = 0;
 		boolean p = false;
@@ -144,7 +144,7 @@ public class ListaHabitaciones extends JScrollPane {
 			}
 			i++;
 		}
-		return listaHabitacionVistas.get(i-1);
+		return listaHabitacionVistas.get(i - 1);
 	}
 
 }

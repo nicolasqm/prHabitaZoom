@@ -27,17 +27,16 @@ public class ListaSolicitudesVista extends JScrollPane {
 		filas = 6;
 		panel.setLayout(new GridLayout(filas, 0, 0, 0));
 		panel.setPreferredSize(this.getSize());
-		
 
 		this.setViewportView(panel);
 	}
-	
+
 	public void anadirSolicitud(Solicitud solicitud) {
 		SolicitudVista s = new SolicitudVista(solicitud);
 		listaSolicitudes.add(s);
 		s.setActionListeners(ctrSolicitudes);
 		nSolicitudes++;
-		if(nSolicitudes == filas +1) {
+		if (nSolicitudes == filas + 1) {
 			filas = filas + 1;
 			panel.setLayout(new GridLayout(filas, 0, 0, 0));
 			panel.setPreferredSize(panel.getSize());
@@ -56,7 +55,7 @@ public class ListaSolicitudesVista extends JScrollPane {
 		}
 		this.ocultarGeneral();
 	}
-	
+
 	public void borrarListaSolicitudes() {
 		panel.removeAll();
 		listaSolicitudes.clear();

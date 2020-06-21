@@ -20,6 +20,7 @@ public class CtrInicioSesion implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 
@@ -44,7 +45,7 @@ public class CtrInicioSesion implements ActionListener {
 					vista.anadirListaAnuncio(lista);
 					List<Anuncio> lista2 = AccesoBD.getInstance().getFavoritos(usuario);
 					vista.quitarBotonesFavoritos(lista2);
-					
+
 				}
 			} catch (Excepcion e1) {
 				vista.getIniciarSesion().setMensajeError(e1.getMessage());

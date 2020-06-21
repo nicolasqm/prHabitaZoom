@@ -12,6 +12,7 @@ public class CtrGeneral implements ActionListener {
 		vista = v;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		if (command.equals("Filtro")) {

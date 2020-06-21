@@ -21,27 +21,26 @@ public class SolicitudVista extends HabitacionVista {
 	private JLabel fechaSolicitud;
 	private JLabel fechaInicioAlq;
 	private JLabel fechaFinAlq;
-	
 
 	public SolicitudVista(Solicitud solicitud) {
 		super(solicitud.getAnuncioSolicitado());
-		
+
 		JPanel datosSolicitud = new JPanel();
 		datosSolicitud.setLayout(new GridLayout(4, 0, 0, 0));
-		
-		solicitante = new JLabel("Solicitante: " + solicitud.getSolicitante().getAlias()
-				+ "("+ solicitud.getSolicitante().getCorreo() +")");
+
+		solicitante = new JLabel("Solicitante: " + solicitud.getSolicitante().getAlias() + "("
+				+ solicitud.getSolicitante().getCorreo() + ")");
 		solicitante.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(solicitante);
-		
+
 		fechaSolicitud = new JLabel("Fecha de solicitud: " + solicitud.getFechaSolicitud());
 		fechaSolicitud.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(fechaSolicitud);
-		
+
 		fechaInicioAlq = new JLabel("Fecha de inicio alquiler: " + solicitud.getFechaInicioAlq());
 		fechaInicioAlq.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(fechaInicioAlq);
-		
+
 		fechaFinAlq = new JLabel("Fecha de fin alquiler: " + solicitud.getFechaFinAlq());
 		fechaFinAlq.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(fechaFinAlq);
