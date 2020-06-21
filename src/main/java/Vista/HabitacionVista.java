@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import Modelo.AccesoBD;
@@ -35,6 +36,11 @@ public class HabitacionVista extends JPanel {
 	private JToggleButton favorito;
 	private JToggleButton enviar;
 	private JLabel errorvalorado;
+	private JToggleButton solicitar;
+	private JLabel textIniAlq;
+	private JTextField iniAlq;
+	private JLabel textFinAlq;
+	private JTextField finAlq;
 
 	public HabitacionVista(Anuncio anuncio) {
 		setLayout(new BorderLayout(0, 0));
@@ -80,6 +86,14 @@ public class HabitacionVista extends JPanel {
 		valoracion = new JLabel("Valoración:");
 		valoracion.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		panel.add(valoracion);
+		
+		solicitar = new JToggleButton("Solicitar");
+		textIniAlq = new JLabel("Fecha inicio alquiler");
+		iniAlq = new JTextField();
+		iniAlq.setColumns(5);
+		textFinAlq = new JLabel("Fecha fin alquiler");
+		finAlq = new JTextField();
+		finAlq.setColumns(5);
 
 		Vector<Integer> valor = new Vector<>();
 		for (int i = 0; i < 6; i++) {
@@ -104,6 +118,12 @@ public class HabitacionVista extends JPanel {
 		errorvalorado = new JLabel();
 		errorvalorado.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		panel.add(errorvalorado);
+		
+		panel.add(solicitar);
+		panel.add(textIniAlq);
+		panel.add(iniAlq);
+		panel.add(textFinAlq);
+		panel.add(finAlq);
 
 	}
 
@@ -138,10 +158,30 @@ public class HabitacionVista extends JPanel {
 	public JPanel getPanelValoracion() {
 		return panel;
 	}
+	
+	public JToggleButton getSolicitar() {
+		return solicitar;
+	}
+	
+	public JTextField getIniAlq() {
+		return iniAlq;
+	}
 
-	public void setActionListeners(ActionListener l, ActionListener v) {
+	public JTextField getFinAlq() {
+		return finAlq;
+	}
+	
+	public JLabel gettextIniAlq() {
+		return textIniAlq;
+	}
+	public JLabel gettextFinAlq() {
+		return textFinAlq;
+	}
+
+	public void setActionListeners(ActionListener l, ActionListener v, ActionListener s) {
 		favorito.addActionListener(l);
 		enviar.addActionListener(v);
+		solicitar.addActionListener(s);
 	}
 
 }

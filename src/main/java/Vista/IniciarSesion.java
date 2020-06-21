@@ -39,7 +39,7 @@ public class IniciarSesion extends JPanel {
 	public IniciarSesion() {
 		setLayout(new GridLayout(5, 1, 0, 0));
 
-		setLogo("src/main/resources/HabitaZoomLogo.jpeg");
+		setLogo("src/main/resources/logoHabitazoom.png");
 		add(panelLogo);
 
 		setPanelUsuario();

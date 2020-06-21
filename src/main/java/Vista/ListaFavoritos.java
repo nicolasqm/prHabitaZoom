@@ -43,9 +43,8 @@ public class ListaFavoritos extends JScrollPane {
 		h.botonQuitar().addActionListener(controladorFavorito);
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
-		if (nHabitaciones == filas + 1) {
-			filas = filas + 1;
-			panel.setLayout(new GridLayout(filas, 0, 0, 0));
+		if (nHabitaciones > filas ) {
+			panel.setLayout(new GridLayout(nHabitaciones, 0, 0, 0));
 			Dimension dim = panel.getSize();
 			panel.setPreferredSize(new Dimension(dim.width, dim.height + 400));
 		}
@@ -83,6 +82,15 @@ public class ListaFavoritos extends JScrollPane {
 		panel.remove(v);
 		nHabitaciones--;
 		listaHabitacionVistas.remove(v);
+		if (nHabitaciones <= filas + 1) {
+			panel.setLayout(new GridLayout(filas, 0, 0, 0));
+			Dimension dim = panel.getSize();
+			panel.setPreferredSize(new Dimension(dim.width, dim.height - 400));
+		}else {
+			panel.setLayout(new GridLayout(nHabitaciones, 0, 0, 0));
+			Dimension dim = panel.getSize();
+			panel.setPreferredSize(new Dimension(dim.width, dim.height - 400));
+		}
 	}
 
 	public void borrarHabitacionesFavoritas() {

@@ -40,8 +40,10 @@ public class CtrInicioSesion implements ActionListener {
 					usuario.setContrasena(u.getContrasena());
 					usuario.setFecha_Nacimiento(u.getFecha_Nacimiento());
 					usuario.setDescripcion(u.getDescripcion());
-					List<Anuncio> lista = AccesoBD.getInstance().getFavoritos(usuario);
-					vista.quitarBotonesFavoritos(lista);
+					List<Anuncio> lista = AccesoBD.getInstance().getAnuncios();
+					vista.anadirListaAnuncio(lista);
+					List<Anuncio> lista2 = AccesoBD.getInstance().getFavoritos(usuario);
+					vista.quitarBotonesFavoritos(lista2);
 					
 				}
 			} catch (Excepcion e1) {

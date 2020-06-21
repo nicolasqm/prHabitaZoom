@@ -15,9 +15,9 @@ public class CtrSolicitudes implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		if (comando.equals("Aceptar")) {
-			vista.getSolicitudesVista().getListaSolicitudes().buscarBotonAceptar();
+			vista.buscarBotonAceptarSolicitud();
 		} else if (comando.equals("Cancelar")) {
-			vista.getSolicitudesVista().getListaSolicitudes().buscarBotonCancelar();
+			vista.buscarBotonCancelarSolicitud();
 		}
 	}
 }

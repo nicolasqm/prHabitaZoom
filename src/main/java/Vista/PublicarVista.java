@@ -141,7 +141,7 @@ public class PublicarVista extends JPanel {
 		JLabel label7 = new JLabel("Distrito: ");
 		distrito = new JComboBox<String>(Distrito.getDistritos());
 		label7.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
-		distrito.setFont(new Font(Font.DIALOG, Font.ROMAN_BASELINE, 15));
+		distrito.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		panel6.add(label7);
 		panel6.add(distrito);
 		add(panel6);
@@ -246,13 +246,9 @@ public class PublicarVista extends JPanel {
 
 	public void borra() {
 		direccion.setText("");
-		;
 		numero.setText("");
-		;
 		planta.setText("");
-		;
 		puerta.setText("");
-		;
 		descripcion.setText("");
 		tamano.setText("");
 		fianza.setText("");

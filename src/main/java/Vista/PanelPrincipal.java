@@ -78,8 +78,8 @@ public class PanelPrincipal extends JPanel {
 
 	public void setActionListeners(ActionListener panelBotones, ActionListener publicar, ActionListener filtro,
 			ActionListener general, ActionListener mostrarPefil, ActionListener modificarPefil,
-			ActionListener favoritos, ActionListener valoracion, ActionListener solicitudes) {
-		this.general.setActionListeners(general, favoritos, valoracion);
+			ActionListener favoritos, ActionListener valoracion, ActionListener solicitudes, ActionListener crearSolicitudes) {
+		this.general.setActionListeners(general, favoritos, valoracion, crearSolicitudes);
 		this.panelBotones.setActionListeners(panelBotones);
 		publicarVista.setActionListeners(publicar);
 		vistaFiltro.setActionListeners(filtro);

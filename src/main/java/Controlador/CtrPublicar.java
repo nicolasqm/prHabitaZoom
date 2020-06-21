@@ -29,6 +29,9 @@ public class CtrPublicar implements ActionListener {
 				propietario = new Propietario(usuario);
 				Distrito d = AccesoBD.getInstance().buscarDistrito(
 						vista.getTextoDistrito().getItemAt(vista.getTextoDistrito().getSelectedIndex()));
+				if (d == null) {
+					throw new Excepcion("Falta el distrito");
+				}
 				String direccion = vista.getTextoDireccion().getText();
 				String numero = vista.getTextoNumero().getText();
 				String planta = vista.getTextoPlanta().getText();
@@ -67,6 +70,8 @@ public class CtrPublicar implements ActionListener {
 				vista.getGeneral().setVisible(true);
 			} catch (Excepcion et) {
 				vista.setPublicarError("Error, faltan datos");
+			} catch (NumberFormatException et) {
+				vista.setPublicarError("Error en el formato de los datos");
 			}
 
 		}

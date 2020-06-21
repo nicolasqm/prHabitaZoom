@@ -25,6 +25,7 @@ public class ListaHabitaciones extends JScrollPane {
 	private ActionListener controladorValoracion;
 	private int width;
 	private int height;
+	private ActionListener controladorSolicitud;
 
 	public ListaHabitaciones() {
 		listaHabitacionVistas = new ArrayList<HabitacionVista>();
@@ -34,8 +35,6 @@ public class ListaHabitaciones extends JScrollPane {
 		nHabitaciones = 0;
 		panel.setLayout(new GridLayout(filas, 0, 0, 0));
 		panel.setPreferredSize(this.getSize());
-		List<Anuncio> lista = AccesoBD.getInstance().getAnuncios();
-		anadirListaAnuncios(lista);
 		this.setViewportView(panel);
 
 		width = panel.getWidth();
@@ -48,17 +47,13 @@ public class ListaHabitaciones extends JScrollPane {
 
 	public void anadirHabitacion(Anuncio anuncio) {
 		HabitacionVista h = new HabitacionVista(anuncio);
-		if (controladorFavorito != null) {
-			h.getBotonFavorito().addActionListener(controladorFavorito);
-		}
-		if (controladorValoracion != null) {
-			h.getEnviar().addActionListener(controladorValoracion);
-		}
+		h.getBotonFavorito().addActionListener(controladorFavorito);
+		h.getEnviar().addActionListener(controladorValoracion);
+		h.getSolicitar().addActionListener(controladorSolicitud);
 		listaHabitacionVistas.add(h);
 		nHabitaciones++;
-		if (nHabitaciones == filas + 1) {
-			filas = filas + 1;
-			panel.setLayout(new GridLayout(filas, 0, 0, 0));
+		if (nHabitaciones > filas ) {
+			panel.setLayout(new GridLayout(nHabitaciones, 0, 0, 0));
 			Dimension dim = panel.getSize();
 			panel.setPreferredSize(new Dimension(dim.width, dim.height + 400));
 		}
@@ -102,12 +97,10 @@ public class ListaHabitaciones extends JScrollPane {
 		return anuncio;
 	}
 
-	public void setActionListeners(ActionListener l, ActionListener v) {
+	public void setActionListeners(ActionListener l, ActionListener v, ActionListener s) {
 		controladorFavorito = l;
 		controladorValoracion = v;
-		for (int pos = 0; pos < listaHabitacionVistas.size(); pos++) {
-			listaHabitacionVistas.get(pos).setActionListeners(l, v);
-		}
+		controladorSolicitud = s;
 	}
 
 	public void desactivarBotonesFavoritos(List<Anuncio> anuciosFavoritos) {
@@ -139,6 +132,19 @@ public class ListaHabitaciones extends JScrollPane {
 		}
 
 		return listaHabitacionVistas.get(i - 1);
+	}
+	
+	public HabitacionVista buscarHabitacionSolicitada() {
+		int i = 0;
+		boolean p = false;
+		while (i < listaHabitacionVistas.size() && (!p)) {
+			if (listaHabitacionVistas.get(i).getSolicitar().isSelected()) {
+				listaHabitacionVistas.get(i).getSolicitar().setSelected(false);
+				p = true;
+			}
+			i++;
+		}
+		return listaHabitacionVistas.get(i-1);
 	}
 
 }

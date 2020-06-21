@@ -29,6 +29,8 @@ public class CtrMostrarPerfil implements ActionListener {
 			vista.getPanelPrincipal().setVisible(false);
 			vista.borrarTextFieldsInicioSesion();
 			vista.getIniciarSesion().setVisible(true);
+			vista.borrarTodasLasHabitaciones();
+			vista.resetearFiltro();
 		}
 	}
 

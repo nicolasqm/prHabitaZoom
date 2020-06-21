@@ -38,7 +38,7 @@ public class SolicitudVista extends HabitacionVista {
 		fechaSolicitud.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(fechaSolicitud);
 		
-		fechaInicioAlq = new JLabel("Fecha de incio alquiler: " + solicitud.getFechaInicioAlq());
+		fechaInicioAlq = new JLabel("Fecha de inicio alquiler: " + solicitud.getFechaInicioAlq());
 		fechaInicioAlq.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
 		datosSolicitud.add(fechaInicioAlq);
 		
@@ -47,7 +47,6 @@ public class SolicitudVista extends HabitacionVista {
 		datosSolicitud.add(fechaFinAlq);
 
 		botones = new JPanel();
-		botones.setLayout(new GridLayout(0, 2, 0, 0));
 
 		aceptar = new JToggleButton("Aceptar");
 		aceptar.setFont(new Font(Font.DIALOG, Font.BOLD, 12));

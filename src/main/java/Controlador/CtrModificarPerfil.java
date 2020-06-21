@@ -26,25 +26,31 @@ public class CtrModificarPerfil implements ActionListener {
 					usuario.getCorreo(), usuario.getContrasena(), usuario.getFecha_Nacimiento(),
 					usuario.getDescripcion());
 			try {
-				if (vista.getModificarPerfil().getConfirmarContrasena().getText()
-						.equals(vista.getModificarPerfil().getContrasena().getText())) {
-					usuario.setAlias(vista.getModificarPerfil().getAlias().getText());
-					usuario.setApellido(vista.getModificarPerfil().getApellido().getText() + " "
-							+ vista.getModificarPerfil().getApellido2().getText());
-					usuario.setContrasena(vista.getModificarPerfil().getContrasena().getText());
-					usuario.setCorreo(vista.getModificarPerfil().getCorreo().getText());
-					usuario.setFecha_Nacimiento(vista.getModificarPerfil().getFechaNacimiento().getText());
-					usuario.setNombre(vista.getModificarPerfil().getNombre().getText());
+				if (!vista.getTextoAliasMod().getText().equals("") && !vista.getTextoApellidoMod().getText().equals("")
+						&& !vista.getTextoApellido2Mod().getText().equals("") && !vista.getTextoNombreMod().getText().equals("") && !vista.getTextoContrasenaMod().getText().equals("")) {
+					if (vista.getTextoConfirmarContrasenaMod().getText().equals(vista.getTextoContrasenaMod().getText())) {
+						usuario.setAlias(vista.getTextoAliasMod().getText());
+						usuario.setApellido(
+								vista.getTextoApellidoMod().getText() + " " + vista.getTextoApellido2Mod().getText());
+						usuario.setContrasena(vista.getModificarPerfil().getContrasena().getText());
+						usuario.setCorreo(vista.getTextoCorreoMod().getText());
+						usuario.setFecha_Nacimiento(vista.getTextoFechaNacimientoMod().getText());
+						usuario.setNombre(vista.getTextoNombreMod().getText());
 
-					bdd.updateUsuario(usuario);
+						bdd.updateUsuario(usuario);
 
-					vista.getModificarPerfil().setVisible(false);
-					vista.getMostrarPerfil().setVisible(true);
-					vista.setUsuarioMostrarPerfil(usuario);
+						vista.getModificarPerfil().setVisible(false);
+						vista.getMostrarPerfil().setVisible(true);
+						vista.setUsuarioMostrarPerfil(usuario);
+					} else {
+						throw new Excepcion("contraseñas no iguales");
+					}
 				} else {
-					throw new Excepcion("contraseñas no iguales");
+					throw new Excepcion("faltan datos");
 				}
+                
 			} catch (Excepcion ex1) {
+				vista.getModificarPerfil().getError().setText(ex1.getMessage());
 				usuario.setNombre(aux.getNombre());
 				usuario.setApellido(aux.getApellido());
 				usuario.setAlias(aux.getAlias());

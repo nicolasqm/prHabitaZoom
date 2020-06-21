@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,11 +18,16 @@ public class ListaSolicitudesVista extends JScrollPane {
 	private JPanel panel;
 	private int nSolicitudes;
 	private ActionListener ctrSolicitudes;
+	private int filas;
 
 	public ListaSolicitudesVista() {
 		listaSolicitudes = new ArrayList<SolicitudVista>();
 		panel = new JPanel();
 		nSolicitudes = 0;
+		filas = 6;
+		panel.setLayout(new GridLayout(filas, 0, 0, 0));
+		panel.setPreferredSize(this.getSize());
+		
 
 		this.setViewportView(panel);
 	}
@@ -29,9 +35,15 @@ public class ListaSolicitudesVista extends JScrollPane {
 	public void anadirSolicitud(Solicitud solicitud) {
 		SolicitudVista s = new SolicitudVista(solicitud);
 		listaSolicitudes.add(s);
+		s.setActionListeners(ctrSolicitudes);
 		nSolicitudes++;
-		panel.setLayout(new GridLayout(nSolicitudes, 0, 0, 0));
-		panel.setPreferredSize(panel.getSize());
+		if(nSolicitudes == filas +1) {
+			filas = filas + 1;
+			panel.setLayout(new GridLayout(filas, 0, 0, 0));
+			panel.setPreferredSize(panel.getSize());
+			Dimension dim = panel.getSize();
+			panel.setPreferredSize(new Dimension(dim.width, dim.height + 400));
+		}
 		if (nSolicitudes > 1) {
 			listaSolicitudes.get(nSolicitudes - 2).getSeparator().setVisible(true);
 		}
@@ -42,7 +54,6 @@ public class ListaSolicitudesVista extends JScrollPane {
 		for (int pos = 0; pos < solicitudes.size(); pos++) {
 			anadirSolicitud(solicitudes.get(pos));
 		}
-		setActionListeners(ctrSolicitudes);
 		this.ocultarGeneral();
 	}
 	
@@ -96,6 +107,11 @@ public class ListaSolicitudesVista extends JScrollPane {
 		for (SolicitudVista sv : listaSolicitudes) {
 			sv.getBotonFavorito().setVisible(false);
 			sv.getPanelValoracion().setVisible(false);
+			sv.getSolicitar().setVisible(false);
+			sv.getIniAlq().setVisible(false);
+			sv.getFinAlq().setVisible(false);
+			sv.gettextFinAlq().setVisible(false);
+			sv.gettextIniAlq().setVisible(false);
 		}
 	}
 

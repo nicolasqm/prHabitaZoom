@@ -17,6 +17,7 @@ public class Controlador {
 	private CtrFavoritos favoritos;
 	private CtrValoraciones valoraciones;
 	private CtrSolicitudes solicitudes;
+	private CtrSolicitar solicitar;
 
 	public Controlador(Usuario u, Vista v) {
 		usuario = u;
@@ -33,9 +34,10 @@ public class Controlador {
 		favoritos = new CtrFavoritos(usuario, vista);
 		valoraciones =  new CtrValoraciones(usuario, vista);
 		solicitudes = new CtrSolicitudes(vista);
+		solicitar = new CtrSolicitar(usuario, vista);
 
 		vista.setActionListeners(inicioSesion, registrarse, panelBotones, publicar, filtro, general, mostrarPerfil,
-				modificarPerfil, favoritos, valoraciones, solicitudes);
+				modificarPerfil, favoritos, valoraciones, solicitudes, solicitar);
 	}
 
 }

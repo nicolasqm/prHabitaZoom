@@ -25,7 +25,6 @@ public class Vista extends JFrame {
 	private PanelPrincipal PanelPrincipal;
 	private IniciarSesion IniciarSesion;
 	private EditarPerfil registrarse;
-	private HabitacionVista habvis;
 
 	public Vista() {
 		this.setTitle("HabitaZoom");
@@ -86,11 +85,11 @@ public class Vista extends JFrame {
 	public void setActionListeners(ActionListener iniciarSesion, ActionListener registrarse,
 			ActionListener panelBotones, ActionListener publicar, ActionListener filtro, ActionListener general,
 			ActionListener mostrarPerfil, ActionListener modificarPerfil, ActionListener favoritos,
-			ActionListener valoracion, ActionListener solicitudes) {
+			ActionListener valoracion, ActionListener solicitudes, ActionListener crearSolicitudes) {
 		IniciarSesion.setActionListeners(iniciarSesion);
 		this.registrarse.setActionListeners(registrarse);
 		PanelPrincipal.setActionListeners(panelBotones, publicar, filtro, general, mostrarPerfil, modificarPerfil,
-				favoritos, valoracion, solicitudes);
+				favoritos, valoracion, solicitudes, crearSolicitudes);
 	}
 
 	// -------------------------------------------------------
@@ -127,6 +126,10 @@ public class Vista extends JFrame {
 
 	public void borrarTextFieldsInicioSesion() {
 		IniciarSesion.borra();
+	}
+	
+	public void anadirListaAnuncio(List<Anuncio> lista) {
+		PanelPrincipal.getGeneral().getLista().anadirListaAnuncios(lista);
 	}
 
 	// -----------------------------------------------------
@@ -168,6 +171,8 @@ public class Vista extends JFrame {
 	public JButton getBotonCancelar() {
 		return registrarse.getCancelar();
 	}
+	
+	
 
 	// ---------------------------------------------------
 	// Aqui empieza los botones y texto de panel principal
@@ -201,17 +206,14 @@ public class Vista extends JFrame {
 		return PanelPrincipal.getGeneral().getBotonFiltro();
 	}
 
-	public int getValoracion() {
-		return habvis.getValoracion();
-	}
-
 	public HabitacionVista getAnuncioValoracion() {
 		return PanelPrincipal.getGeneral().getLista().buscarValoracion();
 	}
-
-	public JLabel getErrorValoracion() {
-		return habvis.errorVal();
+	
+	public HabitacionVista getAnuncioSolicitud() {
+		return PanelPrincipal.getGeneral().getLista().buscarHabitacionSolicitada();
 	}
+	
 
 	// ListaHabitaciones
 
@@ -314,6 +316,38 @@ public class Vista extends JFrame {
 	public void setDatosModificarPerfil(Usuario u) {
 		PanelPrincipal.getModificarPerfil().setDatosUsuario(u);
 	}
+	
+	public JTextField getTextoNombreMod() {
+        return PanelPrincipal.getModificarPerfil().getNombre();
+    }
+
+    public JTextField getTextoApellidoMod() {
+        return PanelPrincipal.getModificarPerfil().getApellido();
+    }
+
+    public JTextField getTextoApellido2Mod() {
+        return PanelPrincipal.getModificarPerfil().getApellido2();
+    }
+
+    public JTextField getTextoAliasMod() {
+        return PanelPrincipal.getModificarPerfil().getAlias();
+    }
+
+    public JTextField getTextoCorreoMod() {
+        return PanelPrincipal.getModificarPerfil().getCorreo();
+    }
+
+    public JTextField getTextoContrasenaMod() {
+        return PanelPrincipal.getModificarPerfil().getContrasena();
+    }
+
+    public JTextField getTextoConfirmarContrasenaMod() {
+        return PanelPrincipal.getModificarPerfil().getConfirmarContrasena();
+    }
+
+    public JTextField getTextoFechaNacimientoMod() {
+        return PanelPrincipal.getModificarPerfil().getFechaNacimiento();
+    }
 
 	// ----------------------------
 	// Getters y setters de Filtrar
@@ -407,6 +441,24 @@ public class Vista extends JFrame {
 		PanelPrincipal.getGeneral().getLista().activarBotonFavorito(anuncio);
 	}
 	
+	public void borrarTodasLasHabitaciones() {
+		this.getGeneral().getLista().borrarTodasLasHabitaciones();
+	}
+	
+	public void resetearFiltro() {
+        getVistaFiltro().getError().setText("");
+        getPanelPrincipal().getVistaFiltro().getDistrito().setSelectedItem(null);
+        getPrecioMin().setText("");
+        getPrecioMax().setText("");
+        getParking().setSelected(false);
+        getTerraza().setSelected(false);
+        getWifi().setSelected(false);
+        getFumador().setSelected(false);
+        getMascota().setSelected(false);
+        getSoloEstudiantes().setSelected(false);
+        getGastosIncluidos().setSelected(false);
+    }
+	
 	// ----------------------
 	// Métodos para Favoritos
 	// ----------------------
@@ -417,5 +469,13 @@ public class Vista extends JFrame {
 	
 	public void borrarTodosLasSolicitudes() {
 		PanelPrincipal.getSolicitudesVista().getListaSolicitudes().borrarListaSolicitudes();
+	} 
+	
+	public void buscarBotonAceptarSolicitud() {
+		this.getSolicitudesVista().getListaSolicitudes().buscarBotonAceptar();
+	}
+	
+	public void buscarBotonCancelarSolicitud() {
+		this.getSolicitudesVista().getListaSolicitudes().buscarBotonCancelar();
 	}
 }

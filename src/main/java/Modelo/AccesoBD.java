@@ -79,7 +79,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido aÃ±adir al usuario");
+			throw new Excepcion("No se ha podido añadir al usuario");
 		}
 	}
 
@@ -100,7 +100,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido modificar el usuario");
+			throw new Excepcion("No se ha podido modificar el usuario");
 		}
 	}
 
@@ -156,7 +156,7 @@ public class AccesoBD {
 	}
 
 	public void anadirHabitacion(Habitacion hab) throws Excepcion {
-		String insertBody = "INSERT INTO Habitacion (Direccion,Numero,Planta,Puerta,Descripcion,TamaÃ±o,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
+		String insertBody = "INSERT INTO Habitacion (Direccion,Numero,Planta,Puerta,Descripcion,Tamaño,Parking,Terraza,Wifi,Fumadores,Mascotas,Solo_Estudiantes,Gastos_Incluidos,Propietario,DistritoNombre,DistritoCP)"
 				+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
@@ -190,7 +190,7 @@ public class AccesoBD {
 			hab.setId(idHabitacion);
 
 		} catch (SQLException e) {
-			throw new Excepcion("fallo al aÃ±adir la habitacion");
+			throw new Excepcion("fallo al añadir la habitacion");
 		}
 
 	}
@@ -252,7 +252,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido aÃ±adir el anuncio");
+			throw new Excepcion("no se ha podido añadir el anuncio");
 		}
 	}
 
@@ -442,7 +442,7 @@ public class AccesoBD {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new Excepcion("no se ha podido aÃ±adir el favorito");
+			throw new Excepcion("no se ha podido añadir el favorito");
 		}
 	}
 
@@ -485,7 +485,7 @@ public class AccesoBD {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new Excepcion("no se ha podido enviar la solicitud");
+            throw new Excepcion("Fechas no validas");
         }
     }
 
